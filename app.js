@@ -37,13 +37,12 @@ const client = new Client({
 
 client.connect();
 
-client.query('SELECT * FROM users;', (err, res) => {
-  if (err) throw err;
-  for (let row of res.rows) {
-    console.log(JSON.stringify(row));
-  }
-  client.release();
-});
+// client.query('SELECT * FROM users;', (err, res) => {
+//   if (err) throw err;
+//   for (let row of res.rows) {
+//     console.log(JSON.stringify(row));
+//   }
+// });
 
 
 var app = express();
@@ -269,7 +268,7 @@ function receivedMessage(event) {
   client.query(text, values)
       .then(res => {
         console.log(res.rows[0]);
-        client.release();
+        client.end();
       })
       .catch(e => console.error(e.stack));
 
