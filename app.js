@@ -250,27 +250,26 @@ function receivedMessage(event) {
   var message = event.message;
 
   //psid plugin
-  var userid;
   psidToFbid.getFromWebhookEvent(event).then(fbid => {
     console.log("Got psid = "+senderID+", fbid = "+fbid);
-    userid = fbid;
+
+    //insert the user to Postgres DB
+    const text = 'INSERT INTO users(psid, userid)\n' +
+        'VALUES($1, $2)\n' +
+        'ON CONFLICT (psid) \n' +
+        'DO\n' +
+        'UPDATE\n' +
+        'SET userid = EXCLUDED.userid;\n';
+    const values = [senderID, fbid];
+
+    client.query(text, values)
+        .then(res => {
+          console.log(res.rows[0]);
+          client.end();
+        })
+        .catch(e => console.error(e.stack));
   });
 
-  //insert the user to Postgres DB
-  const text = 'INSERT INTO users(psid, userid)\n' +
-      'VALUES($1, $2)\n' +
-      'ON CONFLICT (psid) \n' +
-      'DO\n' +
-      'UPDATE\n' +
-      'SET userid = EXCLUDED.userid;\n';
-  const values = [senderID, userid];
-
-  client.query(text, values)
-      .then(res => {
-        console.log(res.rows[0]);
-        client.end();
-      })
-      .catch(e => console.error(e.stack));
 
   console.log("Received message for user %d and page %d at %d with message:",
     senderID, recipientID, timeOfMessage);
