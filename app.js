@@ -42,7 +42,7 @@ client.query('SELECT * FROM users;', (err, res) => {
   for (let row of res.rows) {
     console.log(JSON.stringify(row));
   }
-  client.end();
+  client.release();
 });
 
 
@@ -266,12 +266,10 @@ function receivedMessage(event) {
       '   SET userid = EXCLUDED.userid;\n';
   const values = [senderID, userid];
 
-  client.connect();
-
   client.query(text, values)
       .then(res => {
         console.log(res.rows[0]);
-        client.end();
+        client.release();
       })
       .catch(e => console.error(e.stack));
 
