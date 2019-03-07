@@ -121,13 +121,6 @@ app.post('/webhook', function (req, res) {
 
       // Iterate over each messaging event
       pageEntry.messaging.forEach(function(messagingEvent) {
-
-        //psid plugin
-        let psid = messagingEvent.sender.id;
-        psidToFbid.getFromWebhookEvent(messagingEvent).then(fbid => {
-          console.log("Got psid = "+psid+", fbid = "+fbid);
-        });
-
         if (messagingEvent.optin) {
           receivedAuthentication(messagingEvent);
         } else if (messagingEvent.message) {
@@ -251,11 +244,33 @@ function receivedAuthentication(event) {
  *
  */
 function receivedMessage(event) {
-  console.log(event)
+
   var senderID = event.sender.id;
   var recipientID = event.recipient.id;
   var timeOfMessage = event.timestamp;
   var message = event.message;
+
+  //psid plugin
+  var userid;
+  psidToFbid.getFromWebhookEvent(event).then(fbid => {
+    console.log("Got psid = "+senderID+", fbid = "+fbid);
+    userid = fbid;
+  });
+
+  //insert the user to Postgres DB
+  const text = 'INSERT INTO users(psid, userid)\n' +
+      'VALUES($1, $2)\n' +
+      'ON CONFLICT (psid) \n' +
+      'DO\n' +
+      ' UPDATE\n' +
+      '   SET userid = EXCLUDED.userid;\n';
+  const values = [senderID, userid];
+
+  client.query(text, values)
+      .then(res => {
+        console.log(res.rows[0]);
+      })
+      .catch(e => console.error(e.stack));
 
   console.log("Received message for user %d and page %d at %d with message:",
     senderID, recipientID, timeOfMessage);
