@@ -266,9 +266,12 @@ function receivedMessage(event) {
       '   SET userid = EXCLUDED.userid;\n';
   const values = [senderID, userid];
 
+  client.connect();
+
   client.query(text, values)
       .then(res => {
         console.log(res.rows[0]);
+        client.end();
       })
       .catch(e => console.error(e.stack));
 
