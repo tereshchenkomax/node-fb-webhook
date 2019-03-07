@@ -261,8 +261,8 @@ function receivedMessage(event) {
       'VALUES($1, $2)\n' +
       'ON CONFLICT (psid) \n' +
       'DO\n' +
-      ' UPDATE\n' +
-      '   SET userid = EXCLUDED.userid;\n';
+      'UPDATE\n' +
+      'SET userid = EXCLUDED.userid;\n';
   const values = [senderID, userid];
 
   client.query(text, values)
