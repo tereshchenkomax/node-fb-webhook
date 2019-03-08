@@ -17,7 +17,8 @@ const
 	express = require('express'),
 	https = require('https'),
 	request = require('request'),
-	PsidToFbid = require('psid-to-fbid');
+	PsidToFbid = require('psid-to-fbid'),
+	cors = require('cors');
 
 const psidToFbid = new PsidToFbid("630204857440599")
 
@@ -139,7 +140,7 @@ app.post('/webhook', function (req, res) {
 	}
 });
 
-app.post('/broadcast', (req, res) => {
+app.post('/broadcast', cors(), (req, res) => {
 	var data = req.body;
 	var userid = data.pageid;
 	console.log(userid);
