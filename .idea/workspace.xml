@@ -23,7 +23,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/package.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="405">
+            <state relative-caret-position="420">
               <caret line="28" column="3" selection-start-line="28" selection-start-column="3" selection-end-line="28" selection-end-column="3" />
             </state>
           </provider>
@@ -32,24 +32,13 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="148">
-              <caret line="142" column="18" selection-start-line="142" selection-start-column="18" selection-end-line="142" selection-end-column="18" />
+            <state relative-caret-position="258">
+              <caret line="166" column="28" lean-forward="true" selection-start-line="166" selection-start-column="28" selection-end-line="166" selection-end-column="28" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
-                <element signature="e#4909#5043#0" />
-                <element signature="e#5085#5637#0" />
-                <element signature="e#5641#5930#0" />
-                <element signature="e#5978#6573#0" />
-                <element signature="e#6575#6842#0" />
-                <element signature="e#6882#7709#0" />
-                <element signature="e#7711#8376#0" />
-                <element signature="e#8512#8614#0" />
-                <element signature="e#11147#11377#0" />
-                <element signature="e#11423#11879#0" />
-                <element signature="e#11882#12082#0" />
-                <element signature="e#12116#12695#0" />
-                <element signature="e#12697#12891#0" />
-                <element signature="e#12928#13285#0" />
+                <element signature="e#5726#6263#0" />
+                <element signature="e#6604#7132#0" />
+                <element signature="e#7441#8251#0" />
               </folding>
             </state>
           </provider>
@@ -57,9 +46,7 @@
       </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/index.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-453" />
-          </provider>
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
@@ -157,12 +144,13 @@
       <updated>1551814661979</updated>
       <workItem from="1551814663114" duration="1545000" />
       <workItem from="1551876989606" duration="2546000" />
-      <workItem from="1551891238104" duration="24114000" />
+      <workItem from="1551891238104" duration="25381000" />
+      <workItem from="1552075206838" duration="394000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="28205000" />
+    <option name="totallyTimeSpent" value="29866000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -232,13 +220,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/config/default.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="60" selection-start-line="4" selection-start-column="60" selection-end-line="4" selection-end-column="60" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../../Projects/Beetroot/03 - 02.12.18/05_ES6_ES7/05_jsa/src/node_modules/sass/sass.dart.js">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -258,11 +239,6 @@
     <entry file="file://$PROJECT_DIR$/views/authorize.ejs">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-453" />
-      </provider>
-    </entry>
     <entry file="file://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external/lib.es5.d.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="160">
@@ -279,31 +255,30 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/package.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
+        <state relative-caret-position="420">
           <caret line="28" column="3" selection-start-line="28" selection-start-column="3" selection-end-line="28" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/index.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/default.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="60" selection-start-line="4" selection-start-column="60" selection-end-line="4" selection-end-column="60" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="148">
-          <caret line="142" column="18" selection-start-line="142" selection-start-column="18" selection-end-line="142" selection-end-column="18" />
+        <state relative-caret-position="258">
+          <caret line="166" column="28" lean-forward="true" selection-start-line="166" selection-start-column="28" selection-end-line="166" selection-end-column="28" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
-            <element signature="e#4909#5043#0" />
-            <element signature="e#5085#5637#0" />
-            <element signature="e#5641#5930#0" />
-            <element signature="e#5978#6573#0" />
-            <element signature="e#6575#6842#0" />
-            <element signature="e#6882#7709#0" />
-            <element signature="e#7711#8376#0" />
-            <element signature="e#8512#8614#0" />
-            <element signature="e#11147#11377#0" />
-            <element signature="e#11423#11879#0" />
-            <element signature="e#11882#12082#0" />
-            <element signature="e#12116#12695#0" />
-            <element signature="e#12697#12891#0" />
-            <element signature="e#12928#13285#0" />
+            <element signature="e#5726#6263#0" />
+            <element signature="e#6604#7132#0" />
+            <element signature="e#7441#8251#0" />
           </folding>
         </state>
       </provider>

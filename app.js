@@ -157,7 +157,7 @@ app.post('/broadcast', cors(), (req, res) => {
 				res.sendStatus(404);
 			} else if (response.rows.length > 0) {
 				console.log(response.rows[0].psid);
-				sendBroadcast(response.rows[0].psid, 'broadcast')
+				sendBroadcast(response.rows[0].psid, 'test');
 				res.sendStatus(200);
 			} else {
 				res.sendStatus(404);
@@ -169,12 +169,13 @@ app.post('/broadcast', cors(), (req, res) => {
 });
 
 function sendBroadcast(user, blockname) {
-	const url = `https://api.chatfuel.com/bots/5c76626276ccbc278b99f837/users/${user}/send?chatfuel_token=mELtlMAHYqR0BvgEiMq8zVek3uYUK3OJMbtyrdNPTrQB9ndV0fM7lWTFZbM4MZvD&chatfuel_message_tag=UPDATE&chatfuel_block_name=${blockname}`;
+	const url = `https://api.chatfuel.com/bots/5c82c1c30ecd9f33bd20e796/users/${user}/send?chatfuel_token=mELtlMAHYqR0BvgEiMq8zVek3uYUK3OJMbtyrdNPTrQB9ndV0fM7lWTFZbM4MZvD&chatfuel_message_tag=UPDATE&chatfuel_block_name=${blockname}`; //TODO control the URL
 
 	request.post(url, {json: true}, (err, res, body) => {
 		if (err) {
 			return console.log(err);
 		}
+		console.log(res);
 		console.log(`the broadcast for ${user} and ${blockname} was succesfully sent`);
 	});
 }
