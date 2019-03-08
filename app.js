@@ -22,7 +22,7 @@ const
 
 const psidToFbid = new PsidToFbid("630204857440599"); //TODO make dynamic
 
-psidToFbid.fetchPageToken("EAAAAAYsX7TsBAGvTeRVHJ9zkmzXW2CZC2JgAeCSbgDLbByZAfAt2ZCSZCwxipfiSwkCbpksUTxGykMn6ZCuzrpwejr3oNO0dLkTJ09eez4S0ARIFJqceYvBifkIGAyavCNnJ2U4SyOCxDZBNMMWZALK4ucF0uqkrIUo124NBiiQylLSquk8ztuzwr7zPcPuZBvx1PUI4QtW6cjqjnFZAj6Xdg")
+psidToFbid.fetchPageToken("EAAAAAYsX7TsBAHOIKjibIhYhQRBqA47azCHSjYawaNAYSUNYuSah9NhUS1wJMbzFrkE48bBysjRDo7aiSnoJEO68HFTIUVjuDCyOA60iIOPU59d2V2EGGiw38HXntZCGKPiefN5sNSed9ajW9atCmx2OMNU0MlSNySsYsuxnlZAZAMoKg98rpgUNTKX3aZCYn2VTPGxzdoZBAZCLZBtS7aS")
     .then((page_token) => {
       console.log("Setup complete", page_token);
     }).catch(() => {
@@ -968,16 +968,6 @@ function callSendAPI(messageData) {
 		}
 	});
 }
-
-//generation token for this package
-// const PsidToFbid = require('psid-to-fbid');
-// const psidToFbid = new PsidToFbid("630204857440599")
-// psidToFbid.fetchPageToken("EAAAAUaZA8jlABAIv...")
-//     .then((page_token) => {
-//       console.log("Setup complete", page_token);
-//     }).catch(() => {
-//   console.log("Setup failed");
-// })
 
 // Start server
 // Webhooks must be available via SSL with a certificate signed by a valid
