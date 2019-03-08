@@ -21,18 +21,18 @@ const
 
 const psidToFbid = new PsidToFbid("630204857440599")
 
-// psidToFbid.fetchPageToken("EAAAAAYsX7TsBAGvTeRVHJ9zkmzXW2CZC2JgAeCSbgDLbByZAfAt2ZCSZCwxipfiSwkCbpksUTxGykMn6ZCuzrpwejr3oNO0dLkTJ09eez4S0ARIFJqceYvBifkIGAyavCNnJ2U4SyOCxDZBNMMWZALK4ucF0uqkrIUo124NBiiQylLSquk8ztuzwr7zPcPuZBvx1PUI4QtW6cjqjnFZAj6Xdg")
-//     .then((page_token) => {
-//       console.log("Setup complete", page_token);
-//     }).catch(() => {
-//   console.log("Setup failed");
-// }); //TODO uncomment before pushing
+psidToFbid.fetchPageToken("EAAAAAYsX7TsBAGvTeRVHJ9zkmzXW2CZC2JgAeCSbgDLbByZAfAt2ZCSZCwxipfiSwkCbpksUTxGykMn6ZCuzrpwejr3oNO0dLkTJ09eez4S0ARIFJqceYvBifkIGAyavCNnJ2U4SyOCxDZBNMMWZALK4ucF0uqkrIUo124NBiiQylLSquk8ztuzwr7zPcPuZBvx1PUI4QtW6cjqjnFZAj6Xdg")
+    .then((page_token) => {
+      console.log("Setup complete", page_token);
+    }).catch(() => {
+  console.log("Setup failed");
+}); //TODO uncomment before pushing
 
 const {Client} = require('pg');
 
 const client = new Client({
 	connectionString: process.env.DATABASE_URL,
-	// ssl: true,//TODO uncomment before pushing
+	ssl: true,//TODO uncomment before pushing
 });
 
 client.connect();
