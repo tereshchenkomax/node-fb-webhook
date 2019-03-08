@@ -20,7 +20,7 @@ const
 	PsidToFbid = require('psid-to-fbid'),
 	cors = require('cors');
 
-const psidToFbid = new PsidToFbid("630204857440599")
+const psidToFbid = new PsidToFbid("630204857440599"); //TODO make dynamic
 
 psidToFbid.fetchPageToken("EAAAAAYsX7TsBAGvTeRVHJ9zkmzXW2CZC2JgAeCSbgDLbByZAfAt2ZCSZCwxipfiSwkCbpksUTxGykMn6ZCuzrpwejr3oNO0dLkTJ09eez4S0ARIFJqceYvBifkIGAyavCNnJ2U4SyOCxDZBNMMWZALK4ucF0uqkrIUo124NBiiQylLSquk8ztuzwr7zPcPuZBvx1PUI4QtW6cjqjnFZAj6Xdg")
     .then((page_token) => {
@@ -76,6 +76,14 @@ if (!(APP_SECRET && VALIDATION_TOKEN && PAGE_ACCESS_TOKEN && SERVER_URL)) {
 	console.error("Missing config values");
 	process.exit(1);
 }
+
+const CHATFUEL_BOT_ID = (process.env.CF_BOT_ID) ?
+	(process.env.CF_BOT_ID) :
+	config.get('botId');
+
+const CHATFUEL_TOKEN = (process.env.CF_TOKEN) ?
+	(process.env.CF_TOKEN) :
+	config.get('chatfuel_token');
 
 /*
  * Use your own validation token. Check that the token used in the Webhook
@@ -169,13 +177,13 @@ app.post('/broadcast', cors(), (req, res) => {
 });
 
 function sendBroadcast(user, blockname) {
-	const url = `https://api.chatfuel.com/bots/5c82c1c30ecd9f33bd20e796/users/${user}/send?chatfuel_token=mELtlMAHYqR0BvgEiMq8zVek3uYUK3OJMbtyrdNPTrQB9ndV0fM7lWTFZbM4MZvD&chatfuel_message_tag=UPDATE&chatfuel_block_name=${blockname}`; //TODO control the URL
+	const url = `https://api.chatfuel.com/bots/${CHATFUEL_BOT_ID}/users/${user}/send?chatfuel_token=${CHATFUEL_TOKEN}&chatfuel_message_tag=UPDATE&chatfuel_block_name=${blockname}`; //TODO control the URL
 
 	request.post(url, {json: true}, (err, res, body) => {
 		if (err) {
 			return console.log(err);
 		}
-		console.log(res);
+		console.log(res.body);
 		console.log(`the broadcast for ${user} and ${blockname} was succesfully sent`);
 	});
 }

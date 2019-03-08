@@ -2,5 +2,7 @@
     "appSecret": "db61cfb7deb9b71a08f5b86480d2e155",
     "pageAccessToken": "EAADqMIVDZBpkBAMGaDy85vG31PfZA9rF21fVEzh1pMb3Vr8wI9xPdGqywSF4o46yArZArHMz3o5lyqJx8OgjvJLPIGMXYUYG5yNFLNVhQkw07hqtXCljAJpPlfNFWtfxuOycl7iqXmzSxT2lWqM6qPSNCNCv4fosCOZCZCwNv6fx3ECgUZA9eh",
     "validationToken": "TOKEN",
-    "serverURL": "https://thawing-island-66101.herokuapp.com"
+    "serverURL": "https://thawing-island-66101.herokuapp.com",
+    "botId": "5c82c1c30ecd9f33bd20e796",
+    "chatfuel_token": "mELtlMAHYqR0BvgEiMq8zVek3uYUK3OJMbtyrdNPTrQB9ndV0fM7lWTFZbM4MZvD"
 }
