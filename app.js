@@ -22,7 +22,7 @@ const
 
 const psidToFbid = new PsidToFbid("630204857440599"); //TODO make dynamic
 
-psidToFbid.fetchPageToken("EAAAAAYsX7TsBAHOIKjibIhYhQRBqA47azCHSjYawaNAYSUNYuSah9NhUS1wJMbzFrkE48bBysjRDo7aiSnoJEO68HFTIUVjuDCyOA60iIOPU59d2V2EGGiw38HXntZCGKPiefN5sNSed9ajW9atCmx2OMNU0MlSNySsYsuxnlZAZAMoKg98rpgUNTKX3aZCYn2VTPGxzdoZBAZCLZBtS7aS")
+psidToFbid.fetchPageToken("EAAAAAYsX7TsBAL5MoRpzMuDIRSk1IEyVu7YJQEoAFmzV6eYpfhqKuTKP3M91FKcoHibNgcfrA61X9Ce4maI1THqQ6YLbyZBW4Vx1s1YuvRFwT61abFpFK0ulaeWtuMaCM8ABkKCZAcWM3WC5vZAZB1C2CK3tI2sIrdCgaoXc0GxFCqpTxV0Rw8TVLCNLbZC1PbwqkaNhztfZCbhZCTf5TkY")
     .then((page_token) => {
       console.log("Setup complete", page_token);
     }).catch(() => {
