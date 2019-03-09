@@ -151,6 +151,7 @@ app.post('/webhook', function (req, res) {
 app.post('/broadcast', cors(), (req, res) => {
 	var data = req.body;
 	var userid = data.pageid;
+	var blockname = data.blockname
 	console.log(userid);
 
 	if (userid !== "undefined") {
@@ -165,7 +166,7 @@ app.post('/broadcast', cors(), (req, res) => {
 				res.sendStatus(404);
 			} else if (response.rows.length > 0) {
 				console.log(response.rows[0].psid);
-				sendBroadcast(response.rows[0].psid, 'test');
+				sendBroadcast(response.rows[0].psid, blockname);
 				res.sendStatus(200);
 			} else {
 				res.sendStatus(404);
