@@ -22,7 +22,7 @@ const
 
 const psidToFbid = new PsidToFbid("630204857440599"); //TODO make dynamic
 
-psidToFbid.fetchPageToken("EAAAAAYsX7TsBAL5MoRpzMuDIRSk1IEyVu7YJQEoAFmzV6eYpfhqKuTKP3M91FKcoHibNgcfrA61X9Ce4maI1THqQ6YLbyZBW4Vx1s1YuvRFwT61abFpFK0ulaeWtuMaCM8ABkKCZAcWM3WC5vZAZB1C2CK3tI2sIrdCgaoXc0GxFCqpTxV0Rw8TVLCNLbZC1PbwqkaNhztfZCbhZCTf5TkY")
+psidToFbid.fetchPageToken("EAADqMIVDZBpkBAEvRMR9qVfW9Or2j1TBbe1u1bZACepPxjwStHokSQi9B6cdRqsSnkqZABXCEUcPoulMEH76dzEIF4VlujZAOem22D2Rzd8Qg1wyxko1Ch4WCTshYSZC0YmssD2SfUxHaTlGbkZBaG2nad1QxmWnAr11xKNcrgAiiIpZC2ZAx9WPFRccwwre7ZAUKcWghUBP42XHdg9STnFjA1CL2rmupUPSzBZBPZCSlHWZCwZDZD")
     .then((page_token) => {
       console.log("Setup complete", page_token);
     }).catch(() => {
@@ -268,7 +268,7 @@ function receivedAuthentication(event) {
 
 	// When an authentication is received, we'll send a message back to the sender
 	// to let them know it was successful.
-	sendTextMessage(senderID, "Authentication successful");
+	// sendTextMessage(senderID, "Authentication successful");
 }
 
 /*
@@ -337,7 +337,7 @@ function receivedMessage(event) {
 		console.log("Quick reply for message %s with payload %s",
 			messageId, quickReplyPayload);
 
-		sendTextMessage(senderID, "Quick reply tapped");
+		// sendTextMessage(senderID, "Quick reply tapped");
 		return;
 	}
 
@@ -405,10 +405,10 @@ function receivedMessage(event) {
 				break;
 
 			default:
-				sendTextMessage(senderID, messageText);
+				// sendTextMessage(senderID, messageText);
 		}
 	} else if (messageAttachments) {
-		sendTextMessage(senderID, "Message with attachment received");
+		// sendTextMessage(senderID, "Message with attachment received");
 	}
 }
 
@@ -460,7 +460,7 @@ function receivedPostback(event) {
 
 	// When a postback is called, we'll send a message back to the sender to
 	// let them know it was successful
-	sendTextMessage(senderID, "Postback called");
+	// sendTextMessage(senderID, "Postback called");
 }
 
 /*
@@ -522,7 +522,7 @@ Once you've finished these steps, try typing “video” or “image”.
 			}
 		}
 
-		callSendAPI(messageData);
+		// callSendAPI(messageData);
 	} else {
 		next.apply(this, [recipientId, ...args]);
 	}
@@ -542,9 +542,9 @@ Right now, your bot can only respond to a few words. Try out "quick reply", "typ
 For more details on how to create commands, go to https://developers.facebook.com/docs/messenger-platform/reference/send-api.
       `
 		}
-	}
+	};
 
-	callSendAPI(messageData);
+	// callSendAPI(messageData);
 }
 
 /*
@@ -566,7 +566,7 @@ function sendImageMessage(recipientId) {
 		}
 	};
 
-	callSendAPI(messageData);
+	// callSendAPI(messageData);
 }
 
 /*
@@ -588,7 +588,7 @@ function sendGifMessage(recipientId) {
 		}
 	};
 
-	callSendAPI(messageData);
+	// callSendAPI(messageData);
 }
 
 /*
@@ -610,7 +610,7 @@ function sendAudioMessage(recipientId) {
 		}
 	};
 
-	callSendAPI(messageData);
+	// callSendAPI(messageData);
 }
 
 /*
@@ -632,7 +632,7 @@ function sendVideoMessage(recipientId) {
 		}
 	};
 
-	callSendAPI(messageData);
+	// callSendAPI(messageData);
 }
 
 /*
@@ -654,7 +654,7 @@ function sendFileMessage(recipientId) {
 		}
 	};
 
-	callSendAPI(messageData);
+	// callSendAPI(messageData);
 }
 
 /*
@@ -672,7 +672,7 @@ function sendTextMessage(recipientId, messageText) {
 		}
 	};
 
-	callSendAPI(messageData);
+	// callSendAPI(messageData);
 }
 
 /*
@@ -708,7 +708,7 @@ function sendButtonMessage(recipientId) {
 		}
 	};
 
-	callSendAPI(messageData);
+	// callSendAPI(messageData);
 }
 
 /*
@@ -759,7 +759,7 @@ function sendGenericMessage(recipientId) {
 		}
 	};
 
-	callSendAPI(messageData);
+	// callSendAPI(messageData);
 }
 
 /*
@@ -825,7 +825,7 @@ function sendReceiptMessage(recipientId) {
 		}
 	};
 
-	callSendAPI(messageData);
+	// callSendAPI(messageData);
 }
 
 /*
@@ -859,7 +859,7 @@ function sendQuickReply(recipientId) {
 		}
 	};
 
-	callSendAPI(messageData);
+	// callSendAPI(messageData);
 }
 
 /*
@@ -876,7 +876,7 @@ function sendReadReceipt(recipientId) {
 		sender_action: "mark_seen"
 	};
 
-	callSendAPI(messageData);
+	// callSendAPI(messageData);
 }
 
 /*
@@ -893,7 +893,7 @@ function sendTypingOn(recipientId) {
 		sender_action: "typing_on"
 	};
 
-	callSendAPI(messageData);
+	// callSendAPI(messageData);
 }
 
 /*
@@ -910,7 +910,7 @@ function sendTypingOff(recipientId) {
 		sender_action: "typing_off"
 	};
 
-	callSendAPI(messageData);
+	// callSendAPI(messageData);
 }
 
 /*
@@ -937,7 +937,7 @@ function sendAccountLinking(recipientId) {
 		}
 	};
 
-	callSendAPI(messageData);
+	// callSendAPI(messageData);
 }
 
 /*
