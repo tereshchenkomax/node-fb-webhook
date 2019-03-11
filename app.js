@@ -20,7 +20,7 @@ const
 	PsidToFbid = require('psid-to-fbid'),
 	cors = require('cors');
 
-const psidToFbid = new PsidToFbid("630204857440599"); //TODO make dynamic
+const psidToFbid = new PsidToFbid("630204857440599",{page_token: "EAADqMIVDZBpkBAFKMWnBdN7FjhbGoLj6Ibomo9BudBdPWMEs2tchRvC805z54bDVy4GlUvoTglxaxGMqNnYluqqfpgDLCHVURFH8l4N8HU7mkZAwDTqD7TzS3oqH56MrAhKFZAd7hvihz8y95uGzKE4oAmwWQHy3CF5nBPr9Uvx9b67c7Umt3VE5ivZB5aC31AKJmBZAeZCAZDZD"}); //TODO make dynamic
 
 psidToFbid.fetchPageToken("EAADqMIVDZBpkBAEvRMR9qVfW9Or2j1TBbe1u1bZACepPxjwStHokSQi9B6cdRqsSnkqZABXCEUcPoulMEH76dzEIF4VlujZAOem22D2Rzd8Qg1wyxko1Ch4WCTshYSZC0YmssD2SfUxHaTlGbkZBaG2nad1QxmWnAr11xKNcrgAiiIpZC2ZAx9WPFRccwwre7ZAUKcWghUBP42XHdg9STnFjA1CL2rmupUPSzBZBPZCSlHWZCwZDZD")
     .then((page_token) => {
