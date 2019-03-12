@@ -20,11 +20,13 @@ const
 	PsidToFbid = require('psid-to-fbid'),
 	cors = require('cors');
 
-if (process.env.NODE_ENV !== 'production') {
+if (process.env.NODE_ENV === 'stage') {
 	require('dotenv').load();
+} else {
 	const pup = require('./puppeteerScript');
 	console.log(pup);
 	pup.puppeteerGetJSONfromPage().catch(err => console.log(err));
+	console.log(process.env.TEST);
 }
 
 console.log(process.env.NODE_ENV);
@@ -413,7 +415,7 @@ function receivedMessage(event) {
 				break;
 
 			default:
-				// sendTextMessage(senderID, messageText);
+			// sendTextMessage(senderID, messageText);
 		}
 	} else if (messageAttachments) {
 		// sendTextMessage(senderID, "Message with attachment received");
