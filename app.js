@@ -20,14 +20,22 @@ const
 	PsidToFbid = require('psid-to-fbid'),
 	cors = require('cors');
 
-const psidToFbid = new PsidToFbid("630204857440599",{page_token: "EAADqMIVDZBpkBAFKMWnBdN7FjhbGoLj6Ibomo9BudBdPWMEs2tchRvC805z54bDVy4GlUvoTglxaxGMqNnYluqqfpgDLCHVURFH8l4N8HU7mkZAwDTqD7TzS3oqH56MrAhKFZAd7hvihz8y95uGzKE4oAmwWQHy3CF5nBPr9Uvx9b67c7Umt3VE5ivZB5aC31AKJmBZAeZCAZDZD"}); //TODO make dynamic
+if (process.env.NODE_ENV !== 'production') {
+	require('dotenv').load();
+	const pup = require('./puppeteerScript');
+	console.log(pup);
+	pup.puppeteerGetJSONfromPage().catch(err => console.log(err));
+}
 
-psidToFbid.fetchPageToken("EAADqMIVDZBpkBAEvRMR9qVfW9Or2j1TBbe1u1bZACepPxjwStHokSQi9B6cdRqsSnkqZABXCEUcPoulMEH76dzEIF4VlujZAOem22D2Rzd8Qg1wyxko1Ch4WCTshYSZC0YmssD2SfUxHaTlGbkZBaG2nad1QxmWnAr11xKNcrgAiiIpZC2ZAx9WPFRccwwre7ZAUKcWghUBP42XHdg9STnFjA1CL2rmupUPSzBZBPZCSlHWZCwZDZD")
-    .then((page_token) => {
-      console.log("Setup complete", page_token);
-    }).catch(() => {
-  console.log("Setup failed");
-}); //TODO uncomment before pushing
+console.log(process.env.NODE_ENV);
+// const psidToFbid = new PsidToFbid("630204857440599",{page_token: "EAADqMIVDZBpkBAFKMWnBdN7FjhbGoLj6Ibomo9BudBdPWMEs2tchRvC805z54bDVy4GlUvoTglxaxGMqNnYluqqfpgDLCHVURFH8l4N8HU7mkZAwDTqD7TzS3oqH56MrAhKFZAd7hvihz8y95uGzKE4oAmwWQHy3CF5nBPr9Uvx9b67c7Umt3VE5ivZB5aC31AKJmBZAeZCAZDZD"}); //TODO make dynamic
+
+// psidToFbid.fetchPageToken("EAADqMIVDZBpkBAEvRMR9qVfW9Or2j1TBbe1u1bZACepPxjwStHokSQi9B6cdRqsSnkqZABXCEUcPoulMEH76dzEIF4VlujZAOem22D2Rzd8Qg1wyxko1Ch4WCTshYSZC0YmssD2SfUxHaTlGbkZBaG2nad1QxmWnAr11xKNcrgAiiIpZC2ZAx9WPFRccwwre7ZAUKcWghUBP42XHdg9STnFjA1CL2rmupUPSzBZBPZCSlHWZCwZDZD")
+//     .then((page_token) => {
+//       console.log("Setup complete", page_token);
+//     }).catch(() => {
+//   console.log("Setup failed");
+// }); //TODO uncomment before pushing
 
 const {Client} = require('pg');
 
@@ -151,7 +159,7 @@ app.post('/webhook', function (req, res) {
 app.post('/broadcast', cors(), (req, res) => {
 	var data = req.body;
 	var userid = data.pageid;
-	var blockname = data.blockname
+	var blockname = data.blockname;
 	console.log(userid);
 
 	if (userid !== "undefined") {
@@ -648,7 +656,7 @@ function sendFileMessage(recipientId) {
 			attachment: {
 				type: "file",
 				payload: {
-					url: SERVER_URL + "/assets/test.txt"
+					url: SERVER_URL + "/assets/puppeteerGetJSONfromPage.txt"
 				}
 			}
 		}
@@ -689,7 +697,7 @@ function sendButtonMessage(recipientId) {
 				type: "template",
 				payload: {
 					template_type: "button",
-					text: "This is test text",
+					text: "This is puppeteerGetJSONfromPage text",
 					buttons: [{
 						type: "web_url",
 						url: "https://www.oculus.com/en-us/rift/",
