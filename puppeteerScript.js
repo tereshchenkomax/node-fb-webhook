@@ -4,7 +4,7 @@ const puppeteer = require('puppeteer');
 exports.puppeteerGetJSONfromPage = async () => {
 	const browser = await puppeteer.launch({ args: ['--no-sandbox'] });
 	const page = await browser.newPage();
-	await page.goto('https://jsonplaceholder.typicode.com/todos/1');
+	await page.goto('https://jsonplaceholder.typicode.com/todos/2');
 
 	let content = await page.content();
 
