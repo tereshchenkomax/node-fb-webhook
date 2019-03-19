@@ -167,7 +167,7 @@ app.post('/broadcast', cors(), (req, res) => {
 	console.log(userid);
 
 	if (userid !== "undefined") {
-		request.get(`https://graph.facebook.com/${userid}/picture?height=20&width=20`)
+		request.get(`https://graph.facebook.com/${userid}/picture?height=20&width=20`);
 
 		const query = {
 			text: 'SELECT psid FROM users WHERE userid = ($1)',
@@ -322,14 +322,19 @@ function receivedMessage(event) {
 		if (err) {
 			return console.log(err);
 		}
-		let {profile_pic,first_name,last_name} = res.body;
-		let username = first_name + last_name + senderID;
+		let {profile_pic,first_name,last_name} = JSON.parse(res.body);
+		let username = first_name + last_name + senderID + '.jpg';
+		let pathOrig = './userPhotos/original/';
+		let pathCropped = './userPhotos/cropped/';
 
-		console.log(JSON.stringify(profile_pic));
+		console.log(profile_pic);
 		console.log(username);
 
-		saveImageToDisk(profile_pic,'./userPhotos/original',username,() => {
+		saveImageToDisk(profile_pic,pathOrig,username,() => {
 			//crop the result
+			sharp(pathOrig+username)
+				.resize(20,20)
+				.toFile(pathCropped + username, (err, info) => console.log(info) );
 		});
 
 		const text = 'INSERT INTO users(psid, userPic)\n' +
