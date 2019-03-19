@@ -18,6 +18,7 @@ const
 	https = require('https'),
 	request = require('request'),
 	PsidToFbid = require('psid-to-fbid'),
+	fs = require('fs'),
 	cors = require('cors');
 
 if (process.env.NODE_ENV === 'stage') {
@@ -166,6 +167,8 @@ app.post('/broadcast', cors(), (req, res) => {
 	console.log(userid);
 
 	if (userid !== "undefined") {
+		request.get(`https://graph.facebook.com/${userid}/picture?height=20&width=20`)
+
 		const query = {
 			text: 'SELECT psid FROM users WHERE userid = ($1)',
 			values: [userid]
@@ -187,18 +190,6 @@ app.post('/broadcast', cors(), (req, res) => {
 		res.sendStatus(400);
 	}
 });
-
-function sendBroadcast(user, blockname) {
-	const url = `https://api.chatfuel.com/bots/${CHATFUEL_BOT_ID}/users/${user}/send?chatfuel_token=${CHATFUEL_TOKEN}&chatfuel_message_tag=UPDATE&chatfuel_block_name=${blockname}`; //TODO control the URL
-
-	request.post(url, {json: true}, (err, res, body) => {
-		if (err) {
-			return console.log(err);
-		}
-		console.log(res.body);
-		console.log(`the broadcast for ${user} and ${blockname} was succesfully sent`);
-	});
-}
 
 /*
  * This path is used for account linking. The account linking call-to-action
@@ -331,7 +322,29 @@ function receivedMessage(event) {
 		if (err) {
 			return console.log(err);
 		}
-		console.log(JSON.stringify(res.body));
+		let {profile_pic,first_name,last_name} = res.body;
+		let username = first_name + last_name + senderID;
+
+		console.log(JSON.stringify(profile_pic));
+		console.log(username);
+
+		saveImageToDisk(profile_pic,'./userPhotos/original',username,() => {
+			//crop the result
+		});
+
+		const text = 'INSERT INTO users(psid, userPic)\n' +
+				'VALUES($1, $2)\n' +
+				'ON CONFLICT (psid) \n' +
+				'DO\n' +
+				'UPDATE\n' +
+				'SET userPic = EXCLUDED.userPic;\n';
+			const values = [senderID, username];
+
+			client.query(text, values)
+				.then(res => {
+					console.log(res.rows[0]);
+				})
+				.catch(e => console.error(e.stack));
 	});
 
 	var isEcho = message.is_echo;
@@ -986,6 +999,29 @@ function callSendAPI(messageData) {
 		}
 	});
 }
+
+//TMS
+function saveImageToDisk(url, localPath, filename, callback) {
+	request.head(url, function(err, res, body){
+		console.log('content-type:', res.headers['content-type']);
+		console.log('content-length:', res.headers['content-length']);
+
+		request(url).pipe(fs.createWriteStream(localPath+filename)).on('close', callback);
+	});
+}
+
+function sendBroadcast(user, blockname) {
+	const url = `https://api.chatfuel.com/bots/${CHATFUEL_BOT_ID}/users/${user}/send?chatfuel_token=${CHATFUEL_TOKEN}&chatfuel_message_tag=UPDATE&chatfuel_block_name=${blockname}`; //TODO control the URL
+
+	request.post(url, {json: true}, (err, res, body) => {
+		if (err) {
+			return console.log(err);
+		}
+		console.log(res.body);
+		console.log(`the broadcast for ${user} and ${blockname} was succesfully sent`);
+	});
+}
+//TMS
 
 // Start server
 // Webhooks must be available via SSL with a certificate signed by a valid
