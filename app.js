@@ -550,7 +550,7 @@ We have static resources like images and videos available to test, but you need 
 Once you've finished these steps, try typing “video” or “image”.
         `
 			}
-		}
+		};
 
 		// callSendAPI(messageData);
 	} else {
