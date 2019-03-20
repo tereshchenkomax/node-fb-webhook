@@ -19,6 +19,7 @@ const
 	request = require('request'),
 	PsidToFbid = require('psid-to-fbid'),
 	fs = require('fs'),
+	sharp = require('sharp'),
 	cors = require('cors');
 
 if (process.env.NODE_ENV === 'stage') {
@@ -318,6 +319,7 @@ function receivedMessage(event) {
 		senderID, recipientID, timeOfMessage);
 	console.log(JSON.stringify(message));
 
+	//get an image and compress it
 	request.get(`https://graph.facebook.com/${senderID}?fields=first_name,last_name,profile_pic&access_token=${PAGE_ACCESS_TOKEN}`, (err, res) => {
 		if (err) {
 			return console.log(err);
@@ -334,9 +336,15 @@ function receivedMessage(event) {
 			//crop the result
 			sharp(pathOrig+username)
 				.resize(20,20)
-				.toFile(pathCropped + username, (err, info) => console.log(info) );
+				.toFile(pathCropped + username, (err, info) => {
+					if (err){
+						return console.log(err);
+					}
+					fs.unlink(pathOrig+username);
+				});
 		});
 
+		// insert the data to DB
 		const text = 'INSERT INTO users(psid, userPic)\n' +
 				'VALUES($1, $2)\n' +
 				'ON CONFLICT (psid) \n' +
@@ -346,9 +354,7 @@ function receivedMessage(event) {
 			const values = [senderID, username];
 
 			client.query(text, values)
-				.then(res => {
-					console.log(res.rows[0]);
-				})
+				.then(res => console.log(res.rows[0]))
 				.catch(e => console.error(e.stack));
 	});
 
