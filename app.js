@@ -1023,10 +1023,14 @@ function callSendAPI(messageData) {
 //TMS
 function saveImageToDisk(url, localPath, filename, callback) {
 	request.head(url, function(err, res, body){
-		console.log('content-type:', res.headers['content-type']);
-		console.log('content-length:', res.headers['content-length']);
-
-		request(url).pipe(fs.createWriteStream(localPath+filename)).on('close', callback);
+		if (err){
+			return console.log(err);
+		} else if (typeof res.headers['content-type'] !== 'undefined') {
+			console.log('content-type:', res.headers['content-type']);
+			request(url).pipe(fs.createWriteStream(localPath+filename)).on('close', callback);
+		} else {
+			console.log('content type is undefined');
+		}
 	});
 }
 
