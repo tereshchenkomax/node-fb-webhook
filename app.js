@@ -97,6 +97,8 @@ const CHATFUEL_TOKEN = (process.env.CF_TOKEN) ?
 	(process.env.CF_TOKEN) :
 	config.get('chatfuel_token');
 
+console.log(PAGE_ACCESS_TOKEN);
+
 /*
  * Use your own validation token. Check that the token used in the Webhook
  * setup is the same token used here.
@@ -352,7 +354,7 @@ function receivedMessage(event) {
 					if (err){
 						return console.log(err);
 					}
-					fs.unlink(pathOrig+username);
+					fs.unlinkSync(pathOrig+username);
 				});
 		});
 

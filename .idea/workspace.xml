@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/app.js" line="162" mnemonic="1" />
-    <bookmark url="file://$PROJECT_DIR$/app.js" line="123" mnemonic="2" />
-    <bookmark url="file://$PROJECT_DIR$/app.js" line="289" mnemonic="3" />
+    <bookmark url="file://$PROJECT_DIR$/app.js" line="164" mnemonic="1" />
+    <bookmark url="file://$PROJECT_DIR$/app.js" line="125" mnemonic="2" />
+    <bookmark url="file://$PROJECT_DIR$/app.js" line="291" mnemonic="3" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="aeed00b0-0ce4-4f6d-b3f8-3e594429ca7b" name="Default Changelist" comment="Before the rebasing the project locally">
       <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/default.json" beforeDir="false" afterPath="$PROJECT_DIR$/config/default.json" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -23,11 +24,12 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="359">
-              <caret line="344" column="11" selection-start-line="344" selection-start-column="11" selection-end-line="344" selection-end-column="11" />
+            <state relative-caret-position="392">
+              <caret line="356" column="33" selection-start-line="356" selection-start-column="33" selection-end-line="356" selection-end-column="33" />
               <folding>
                 <element signature="e#202#238#0" />
                 <element signature="e#569#599#0" />
+                <element signature="e#605#778#0" />
                 <element signature="e#875#966#0" />
                 <element signature="e#1181#1344#0" />
                 <element signature="e#1648#1927#0" />
@@ -75,7 +77,6 @@
                 <element signature="e#8493#8571#0" />
                 <element signature="e#8675#9340#0" />
                 <element signature="e#9518#9531#0" />
-                <element signature="e#10909#10924#0" />
                 <element signature="e#11558#11722#0" />
                 <element signature="e#11744#11953#0" />
                 <element signature="e#11973#13349#0" />
@@ -253,7 +254,7 @@
         <entry file="file://$PROJECT_DIR$/config/default.json">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="30">
-              <caret line="2" column="240" selection-start-line="2" selection-start-column="24" selection-end-line="2" selection-end-column="240" />
+              <caret line="2" column="236" selection-start-line="2" selection-start-column="236" selection-end-line="2" selection-end-column="236" />
             </state>
           </provider>
         </entry>
@@ -276,7 +277,6 @@
       <find>request(</find>
       <find>app.use</find>
       <find>genLoginURLiOS</find>
-      <find>PAGE_ACCESS_TOKEN</find>
       <find>case</find>
       <find>sendTextMessage</find>
       <find>callSendAPI</find>
@@ -289,6 +289,7 @@
       <find>fs</find>
       <find>console.log</find>
       <find>TEST</find>
+      <find>PAGE_ACCESS_TOKEN</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -411,12 +412,12 @@
       <workItem from="1552899910375" duration="269000" />
       <workItem from="1552919518245" duration="5883000" />
       <workItem from="1552998072220" duration="5577000" />
-      <workItem from="1553015877930" duration="5603000" />
+      <workItem from="1553015877930" duration="7911000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="73834000" />
+    <option name="totallyTimeSpent" value="76142000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -580,17 +581,18 @@
     <entry file="file://$PROJECT_DIR$/config/default.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="30">
-          <caret line="2" column="240" selection-start-line="2" selection-start-column="24" selection-end-line="2" selection-end-column="240" />
+          <caret line="2" column="236" selection-start-line="2" selection-start-column="236" selection-end-line="2" selection-end-column="236" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="359">
-          <caret line="344" column="11" selection-start-line="344" selection-start-column="11" selection-end-line="344" selection-end-column="11" />
+        <state relative-caret-position="392">
+          <caret line="356" column="33" selection-start-line="356" selection-start-column="33" selection-end-line="356" selection-end-column="33" />
           <folding>
             <element signature="e#202#238#0" />
             <element signature="e#569#599#0" />
+            <element signature="e#605#778#0" />
             <element signature="e#875#966#0" />
             <element signature="e#1181#1344#0" />
             <element signature="e#1648#1927#0" />
@@ -638,7 +640,6 @@
             <element signature="e#8493#8571#0" />
             <element signature="e#8675#9340#0" />
             <element signature="e#9518#9531#0" />
-            <element signature="e#10909#10924#0" />
             <element signature="e#11558#11722#0" />
             <element signature="e#11744#11953#0" />
             <element signature="e#11973#13349#0" />
