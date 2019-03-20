@@ -28,7 +28,6 @@ if (process.env.NODE_ENV === 'stage') {
 	// const pup = require('./puppeteerScript');
 	// console.log(pup);
 	// pup.puppeteerGetJSONfromPage(url).catch(err => console.log(err));
-	console.log(process.env.TEST);
 }
 
 console.log(process.env.NODE_ENV);
@@ -326,8 +325,13 @@ function receivedMessage(event) {
 		}
 		let {profile_pic,first_name,last_name} = JSON.parse(res.body);
 		let username = first_name + last_name + senderID + '.jpg';
+		let path = './userPhotos/';
 		let pathOrig = './userPhotos/original/';
 		let pathCropped = './userPhotos/cropped/';
+
+		if (!fs.existsSync(path)) {
+			fs.mkdirSync(path);
+		}
 
 		if (!fs.existsSync(pathOrig)) {
 			fs.mkdirSync(pathOrig);
@@ -336,7 +340,6 @@ function receivedMessage(event) {
 		if (!fs.existsSync(pathCropped)) {
 			fs.mkdirSync(pathCropped);
 		}
-
 
 		console.log(profile_pic);
 		console.log(username);
