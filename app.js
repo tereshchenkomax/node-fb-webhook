@@ -320,7 +320,7 @@ function receivedMessage(event) {
 	console.log(JSON.stringify(message));
 
 	//get an image and compress it
-	request.get(`https://graph.facebook.com/${senderID}?fields=first_name,last_name,profile_pic&access_token=${PAGE_ACCESS_TOKEN}`, (err, res) => {
+	request.get(`https://graph.facebook.com/v3.2/${senderID}?fields=first_name,last_name,profile_pic&access_token=${PAGE_ACCESS_TOKEN}`, (err, res) => {
 		if (err) {
 			return console.log(err);
 		}
