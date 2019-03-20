@@ -329,6 +329,15 @@ function receivedMessage(event) {
 		let pathOrig = './userPhotos/original/';
 		let pathCropped = './userPhotos/cropped/';
 
+		if (!fs.existsSync(pathOrig)) {
+			fs.mkdirSync(pathOrig);
+		}
+
+		if (!fs.existsSync(pathCropped)) {
+			fs.mkdirSync(pathCropped);
+		}
+
+
 		console.log(profile_pic);
 		console.log(username);
 
@@ -345,7 +354,7 @@ function receivedMessage(event) {
 		});
 
 		// insert the data to DB
-		const text = 'INSERT INTO users(psid, userPic)\n' +
+		const text = 'INSERT INTO users(psid, userpic)\n' +
 				'VALUES($1, $2)\n' +
 				'ON CONFLICT (psid) \n' +
 				'DO\n' +

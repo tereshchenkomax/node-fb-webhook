@@ -8,7 +8,6 @@
   <component name="ChangeListManager">
     <list default="true" id="aeed00b0-0ce4-4f6d-b3f8-3e594429ca7b" name="Default Changelist" comment="Before the rebasing the project locally">
       <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/default.json" beforeDir="false" afterPath="$PROJECT_DIR$/config/default.json" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -21,11 +20,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="464">
-              <caret line="342" column="29" lean-forward="true" selection-start-line="342" selection-start-column="20" selection-end-line="342" selection-end-column="29" />
+            <state relative-caret-position="208">
+              <caret line="337" column="9" lean-forward="true" selection-start-line="337" selection-start-column="9" selection-end-line="337" selection-end-column="9" />
               <folding>
                 <element signature="e#202#238#0" />
                 <element signature="e#569#599#0" />
@@ -252,7 +251,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/config/default.json">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="30">
@@ -290,6 +289,7 @@
       <find>request</find>
       <find>broad</find>
       <find>fs</find>
+      <find>console.log</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -306,8 +306,8 @@
         <option value="$PROJECT_DIR$/puppeteerScript.js" />
         <option value="$PROJECT_DIR$/.jshintrc" />
         <option value="$PROJECT_DIR$/.gitignore" />
-        <option value="$PROJECT_DIR$/app.js" />
         <option value="$PROJECT_DIR$/config/default.json" />
+        <option value="$PROJECT_DIR$/app.js" />
       </list>
     </option>
   </component>
@@ -412,12 +412,12 @@
       <workItem from="1552899910375" duration="269000" />
       <workItem from="1552919518245" duration="5883000" />
       <workItem from="1552998072220" duration="5577000" />
-      <workItem from="1553015877930" duration="2319000" />
+      <workItem from="1553015877930" duration="3521000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="70550000" />
+    <option name="totallyTimeSpent" value="71752000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -578,10 +578,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/config/default.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="240" selection-start-line="2" selection-start-column="240" selection-end-line="2" selection-end-column="240" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="464">
-          <caret line="342" column="29" lean-forward="true" selection-start-line="342" selection-start-column="20" selection-end-line="342" selection-end-column="29" />
+        <state relative-caret-position="208">
+          <caret line="337" column="9" lean-forward="true" selection-start-line="337" selection-start-column="9" selection-end-line="337" selection-end-column="9" />
           <folding>
             <element signature="e#202#238#0" />
             <element signature="e#569#599#0" />
@@ -804,13 +811,6 @@
             <element signature="e#26336#26351#0" />
             <element signature="e#26493#26558#0" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config/default.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="240" selection-start-line="2" selection-start-column="240" selection-end-line="2" selection-end-column="240" />
         </state>
       </provider>
     </entry>
