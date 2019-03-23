@@ -20,6 +20,7 @@ const
 	PsidToFbid = require('psid-to-fbid'),
 	fs = require('fs'),
 	sharp = require('sharp'),
+	{imgDiff} = require('img-diff-js'),
 	cors = require('cors');
 
 if (process.env.NODE_ENV === 'stage') {
@@ -167,13 +168,46 @@ app.post('/broadcast', cors(), (req, res) => {
 	var userid = data.pageid;
 	var blockname = data.blockname;
 	console.log(userid);
+	var properFile;
 
 	if (userid !== "undefined") {
-		request.get(`https://graph.facebook.com/${userid}/picture?height=20&width=20`);
+		request.get(`https://graph.facebook.com/${userid}/picture?height=24&width=24`, (err, res) => {
+			if (err) {
+				return console.log(err);
+			}
+			let body = JSON.parse(res.body);
+			let profile_pic = body.data.url;
+			let pathCropped = './userPhotos/cropped/';
+			let pathOrig = './userPhotos/client/';
+			let minDiff = 400;
+			let index;
+			if (!fs.existsSync(pathOrig)) {
+				fs.mkdirSync(pathOrig);
+			}
+
+			saveImageToDisk(profile_pic, pathOrig, 'temp.jpg', (err, info) => {
+				fs.readdir(pathCropped, (err, files) => {
+					files.forEach((file, idx) => {
+						console.log(file, idx);
+						imgDiff({
+							actualFilename: pathCropped + file,
+							expectedFilename: pathOrig + 'temp.jpg'
+						}).then(result => {
+							if (result.diffCount < 20 && result.diffCount < minDiff) {
+								minDiff = result.diffCount;
+								index = idx;
+								properFile = files[index];
+							}
+						});
+					});
+				});
+			});
+		});
+
 
 		const query = {
-			text: 'SELECT psid FROM users WHERE userid = ($1)',
-			values: [userid]
+			text: 'SELECT psid FROM users WHERE userpic = ($1)',
+			values: [properFile]
 		};
 
 		client.query(query, (err, response) => {
@@ -325,7 +359,7 @@ function receivedMessage(event) {
 		if (err) {
 			return console.log(err);
 		}
-		let {profile_pic,first_name,last_name} = JSON.parse(res.body);
+		let {profile_pic, first_name, last_name} = JSON.parse(res.body);
 		let username = first_name + last_name + senderID + '.jpg';
 		let path = './userPhotos/';
 		let pathOrig = './userPhotos/original/';
@@ -346,30 +380,30 @@ function receivedMessage(event) {
 		console.log(profile_pic);
 		console.log(username);
 
-		saveImageToDisk(profile_pic,pathOrig,username,() => {
+		saveImageToDisk(profile_pic, pathOrig, username, () => {
 			//crop the result
-			sharp(pathOrig+username)
-				.resize(20,20)
+			sharp(pathOrig + username)
+				.resize(24, 24)
 				.toFile(pathCropped + username, (err, info) => {
-					if (err){
+					if (err) {
 						return console.log(err);
 					}
-					fs.unlinkSync(pathOrig+username);
+					fs.unlinkSync(pathOrig + username);
 				});
 		});
 
 		// insert the data to DB
 		const text = 'INSERT INTO users(psid, userpic)\n' +
-				'VALUES($1, $2)\n' +
-				'ON CONFLICT (psid) \n' +
-				'DO\n' +
-				'UPDATE\n' +
-				'SET userPic = EXCLUDED.userPic;\n';
-			const values = [senderID, username];
+			'VALUES($1, $2)\n' +
+			'ON CONFLICT (psid) \n' +
+			'DO\n' +
+			'UPDATE\n' +
+			'SET userPic = EXCLUDED.userPic;\n';
+		const values = [senderID, username];
 
-			client.query(text, values)
-				.then(res => console.log(res.rows[0]))
-				.catch(e => console.error(e.stack));
+		client.query(text, values)
+			.then(res => console.log(res.rows[0]))
+			.catch(e => console.error(e.stack));
 	});
 
 	var isEcho = message.is_echo;
@@ -1027,12 +1061,12 @@ function callSendAPI(messageData) {
 
 //TMS
 function saveImageToDisk(url, localPath, filename, callback) {
-	request.head(url, function(err, res, body){
-		if (err){
+	request.head(url, function (err, res, body) {
+		if (err) {
 			return console.log(err);
 		} else if (typeof res.headers['content-type'] !== 'undefined') {
 			console.log('content-type:', res.headers['content-type']);
-			request(url).pipe(fs.createWriteStream(localPath+filename)).on('close', callback);
+			request(url).pipe(fs.createWriteStream(localPath + filename)).on('close', callback);
 		} else {
 			console.log('content type is undefined');
 		}
@@ -1050,6 +1084,7 @@ function sendBroadcast(user, blockname) {
 		console.log(`the broadcast for ${user} and ${blockname} was succesfully sent`);
 	});
 }
+
 //TMS
 
 // Start server
