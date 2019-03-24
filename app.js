@@ -31,13 +31,13 @@ if (process.env.NODE_ENV === 'stage') {
 	// pup.puppeteerGetJSONfromPage(url).catch(err => console.log(err));
 }
 
-console.log(process.env.NODE_ENV);
+// console.log(process.env.NODE_ENV);
 
 const {Client} = require('pg');
 
 const client = new Client({
 	connectionString: process.env.DATABASE_URL,
-	ssl: true,//TODO uncomment before pushing
+	// ssl: true,//TODO uncomment before pushing
 });
 
 client.connect();
@@ -55,7 +55,7 @@ app.use(express.static('public'));
  *
  */
 
-const psidToFbid = new PsidToFbid("630204857440599", {page_token: "EAADqMIVDZBpkBAFKMWnBdN7FjhbGoLj6Ibomo9BudBdPWMEs2tchRvC805z54bDVy4GlUvoTglxaxGMqNnYluqqfpgDLCHVURFH8l4N8HU7mkZAwDTqD7TzS3oqH56MrAhKFZAd7hvihz8y95uGzKE4oAmwWQHy3CF5nBPr9Uvx9b67c7Umt3VE5ivZB5aC31AKJmBZAeZCAZDZD"}); //TODO make dynamic
+// const psidToFbid = new PsidToFbid("630204857440599", {page_token: "EAADqMIVDZBpkBAFKMWnBdN7FjhbGoLj6Ibomo9BudBdPWMEs2tchRvC805z54bDVy4GlUvoTglxaxGMqNnYluqqfpgDLCHVURFH8l4N8HU7mkZAwDTqD7TzS3oqH56MrAhKFZAd7hvihz8y95uGzKE4oAmwWQHy3CF5nBPr9Uvx9b67c7Umt3VE5ivZB5aC31AKJmBZAeZCAZDZD"}); //TODO make dynamic
 
 // psidToFbid.fetchPageToken("EAADqMIVDZBpkBAEvRMR9qVfW9Or2j1TBbe1u1bZACepPxjwStHokSQi9B6cdRqsSnkqZABXCEUcPoulMEH76dzEIF4VlujZAOem22D2Rzd8Qg1wyxko1Ch4WCTshYSZC0YmssD2SfUxHaTlGbkZBaG2nad1QxmWnAr11xKNcrgAiiIpZC2ZAx9WPFRccwwre7ZAUKcWghUBP42XHdg9STnFjA1CL2rmupUPSzBZBPZCSlHWZCwZDZD")
 //     .then((page_token) => {
@@ -97,8 +97,6 @@ const CHATFUEL_BOT_ID = (process.env.CF_BOT_ID) ?
 const CHATFUEL_TOKEN = (process.env.CF_TOKEN) ?
 	(process.env.CF_TOKEN) :
 	config.get('chatfuel_token');
-
-console.log(PAGE_ACCESS_TOKEN);
 
 /*
  * Use your own validation token. Check that the token used in the Webhook
@@ -168,60 +166,55 @@ app.post('/broadcast', cors(), (req, res) => {
 	var userid = data.pageid;
 	var blockname = data.blockname;
 	console.log(userid);
-	var properFile;
-
 	if (userid !== "undefined") {
-		request.get(`https://graph.facebook.com/${userid}/picture?height=24&width=24`, (err, res) => {
-			if (err) {
-				return console.log(err);
-			}
-			let body = JSON.parse(res.body);
-			let profile_pic = body.data.url;
-			let pathCropped = './userPhotos/cropped/';
-			let pathOrig = './userPhotos/client/';
-			let minDiff = 400;
-			let index;
-			if (!fs.existsSync(pathOrig)) {
-				fs.mkdirSync(pathOrig);
-			}
 
-			saveImageToDisk(profile_pic, pathOrig, 'temp.jpg', (err, info) => {
-				fs.readdir(pathCropped, (err, files) => {
-					files.forEach((file, idx) => {
-						console.log(file, idx);
-						imgDiff({
-							actualFilename: pathCropped + file,
-							expectedFilename: pathOrig + 'temp.jpg'
-						}).then(result => {
-							if (result.diffCount < 20 && result.diffCount < minDiff) {
-								minDiff = result.diffCount;
-								index = idx;
-								properFile = files[index];
-							}
-						});
+		// let body = JSON.parse(res.body);
+		let profile_pic = `https://graph.facebook.com/${userid}/picture?height=24&width=24`;
+		let pathCropped = './userPhotos/cropped/';
+		let pathOrig = './userPhotos/client/';
+		let minDiff = 400;
+		let index;
+		let properFile;
+		if (!fs.existsSync(pathOrig)) {
+
+			fs.mkdirSync(pathOrig);
+		}
+		saveImageToDisk(profile_pic, pathOrig, 'temp.jpg', (err, info) => {
+			fs.readdir(pathCropped, (err, files) => {
+				files.forEach((file, idx) => {
+					imgDiff({
+						actualFilename: pathCropped + file,
+						expectedFilename: pathOrig + 'temp.jpg'
+					}).then(result => {
+						if (result.diffCount < 20 && result.diffCount < minDiff) {
+							minDiff = result.diffCount;
+							index = idx;
+							properFile = files[index];
+							console.log(properFile);
+							const query = {
+								text: "SELECT psid FROM users WHERE userpic = ($1)",
+								values: [properFile]
+							};
+							client.query(query, (err, response) => {
+								if (err) {
+									console.log(err.stack);
+									res.sendStatus(404);
+								} else if (response.rows.length > 0) {
+									console.log(response.rows[0].psid);
+									// sendBroadcast(response.rows[0].psid, blockname); //TODO uncomment
+									res.sendStatus(200);
+								} else {
+									res.sendStatus(404);
+								}
+							});
+						}
 					});
 				});
 			});
 		});
 
 
-		const query = {
-			text: 'SELECT psid FROM users WHERE userpic = ($1)',
-			values: [properFile]
-		};
 
-		client.query(query, (err, response) => {
-			if (err) {
-				console.log(err.stack);
-				res.sendStatus(404);
-			} else if (response.rows.length > 0) {
-				console.log(response.rows[0].psid);
-				sendBroadcast(response.rows[0].psid, blockname);
-				res.sendStatus(200);
-			} else {
-				res.sendStatus(404);
-			}
-		});
 	} else {
 		res.sendStatus(400);
 	}
