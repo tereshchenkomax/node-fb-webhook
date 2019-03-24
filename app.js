@@ -37,7 +37,7 @@ const {Client} = require('pg');
 
 const client = new Client({
 	connectionString: process.env.DATABASE_URL,
-	// ssl: true,//TODO uncomment before pushing
+	ssl: true,//TODO uncomment before pushing
 });
 
 client.connect();
@@ -201,7 +201,7 @@ app.post('/broadcast', cors(), (req, res) => {
 									res.sendStatus(404);
 								} else if (response.rows.length > 0) {
 									console.log(response.rows[0].psid);
-									// sendBroadcast(response.rows[0].psid, blockname); //TODO uncomment
+									sendBroadcast(response.rows[0].psid, blockname); //TODO uncomment
 									res.sendStatus(200);
 								} else {
 									res.sendStatus(404);
