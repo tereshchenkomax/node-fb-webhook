@@ -373,7 +373,10 @@ function receivedMessage(event) {
 		console.log(profile_pic);
 		console.log(username);
 
-		saveImageToDisk(profile_pic, pathOrig, username, () => {
+		saveImageToDisk(profile_pic, pathOrig, username, (err) => {
+			if (err) {
+				return console.log(err);
+			}
 			//crop the result
 			sharp(pathOrig + username)
 				.resize(24, 24)
@@ -381,22 +384,23 @@ function receivedMessage(event) {
 					if (err) {
 						return console.log(err);
 					}
+					// insert the data to DB
+					const text = 'INSERT INTO users(psid, userpic)\n' +
+						'VALUES($1, $2)\n' +
+						'ON CONFLICT (psid) \n' +
+						'DO\n' +
+						'UPDATE\n' +
+						'SET userPic = EXCLUDED.userPic;\n';
+					const values = [senderID, username];
+
+					client.query(text, values)
+						.then(res => console.log(res.rows[0]))
+						.catch(e => console.error(e.stack));
+
 					fs.unlinkSync(pathOrig + username);
 				});
 		});
 
-		// insert the data to DB
-		const text = 'INSERT INTO users(psid, userpic)\n' +
-			'VALUES($1, $2)\n' +
-			'ON CONFLICT (psid) \n' +
-			'DO\n' +
-			'UPDATE\n' +
-			'SET userPic = EXCLUDED.userPic;\n';
-		const values = [senderID, username];
-
-		client.query(text, values)
-			.then(res => console.log(res.rows[0]))
-			.catch(e => console.error(e.stack));
 	});
 
 	var isEcho = message.is_echo;
