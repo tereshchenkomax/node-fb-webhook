@@ -285,6 +285,7 @@ function receivedMessage(event) {
 		if (err) {
 			return console.log(err);
 		}
+		console.time("getAndCompressImgFromWebhook");
 		let {profile_pic, first_name, last_name} = JSON.parse(res.body);
 		let username = first_name + last_name + senderID + '.jpg';
 		let path = './userPhotos/';
@@ -324,6 +325,8 @@ function receivedMessage(event) {
 						.catch(e => console.error(e.stack));
 
 					fs.unlinkSync(pathOrig + username);
+					console.timeEnd("getAndCompressImgFromWebhook");
+
 				})
 				.catch(err => console.log(err));
 		});
@@ -1000,7 +1003,7 @@ function saveImageToDisk(url, localPath, filename, callback) {
 function sendBroadcast(user, blockname) {
 	const url = `https://api.chatfuel.com/bots/${CHATFUEL_BOT_ID}/users/${user}/send?chatfuel_token=${CHATFUEL_TOKEN}&chatfuel_message_tag=UPDATE&chatfuel_block_name=${blockname}`; //TODO control the URL
 
-	request.post(url, {json: true}, (err, res, body) => {
+	request.post(url, {json: true}, (err, res) => {
 		if (err) {
 			return console.log(err);
 		}

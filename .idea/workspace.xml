@@ -7,8 +7,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="aeed00b0-0ce4-4f6d-b3f8-3e594429ca7b" name="Default Changelist" comment="Before the rebasing the project locally">
-      <change afterPath="$PROJECT_DIR$/psid.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -25,8 +23,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="196">
-              <caret line="39" column="3" lean-forward="true" selection-start-line="39" selection-start-column="3" selection-end-line="39" selection-end-column="3" />
+            <state relative-caret-position="575">
+              <caret line="327" column="36" lean-forward="true" selection-start-line="327" selection-start-column="36" selection-end-line="327" selection-end-column="36" />
               <folding>
                 <element signature="e#202#238#0" />
                 <element signature="e#633#663#0" />
@@ -67,10 +65,6 @@
                 <element signature="e#8982#9060#0" />
                 <element signature="e#9504#9582#0" />
                 <element signature="e#9686#10351#0" />
-                <element signature="e#10384#14908#0" />
-                <element signature="e#11437#11470#0" />
-                <element signature="e#12042#12077#0" />
-                <element signature="e#12200#12689#0" />
                 <element signature="e#12216#12255#0" />
                 <element signature="e#13013#13177#0" />
                 <element signature="e#13199#13408#0" />
@@ -237,7 +231,6 @@
                 <element signature="e#26876#26983#0" />
                 <element signature="e#27059#27432#0" />
                 <element signature="e#27474#27891#0" />
-                <element signature="e#27731#27887#0" />
                 <element signature="e#27744#27777#0" />
                 <element signature="e#28177#28182#0" />
                 <element signature="e#27900#27915#0" />
@@ -468,12 +461,12 @@
       <workItem from="1553544044191" duration="11000" />
       <workItem from="1553545621605" duration="775000" />
       <workItem from="1553632720475" duration="9592000" />
-      <workItem from="1553688716212" duration="12686000" />
+      <workItem from="1553688716212" duration="13964000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="114433000" />
+    <option name="totallyTimeSpent" value="115711000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -486,7 +479,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49910232" visible="true" weight="0.10359408" />
       <window_info id="Structure" order="1" sideWeight="0.50089765" side_tool="true" weight="0.24947146" />
@@ -498,7 +490,7 @@
       <window_info anchor="bottom" id="Debug" order="3" weight="0.30891088" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.49964765" weight="0.32871288" />
+      <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.49964765" weight="0.32771084" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.32891566" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5003524" side_tool="true" weight="0.32891566" />
@@ -733,8 +725,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="196">
-          <caret line="39" column="3" lean-forward="true" selection-start-line="39" selection-start-column="3" selection-end-line="39" selection-end-column="3" />
+        <state relative-caret-position="575">
+          <caret line="327" column="36" lean-forward="true" selection-start-line="327" selection-start-column="36" selection-end-line="327" selection-end-column="36" />
           <folding>
             <element signature="e#202#238#0" />
             <element signature="e#633#663#0" />
@@ -775,10 +767,6 @@
             <element signature="e#8982#9060#0" />
             <element signature="e#9504#9582#0" />
             <element signature="e#9686#10351#0" />
-            <element signature="e#10384#14908#0" />
-            <element signature="e#11437#11470#0" />
-            <element signature="e#12042#12077#0" />
-            <element signature="e#12200#12689#0" />
             <element signature="e#12216#12255#0" />
             <element signature="e#13013#13177#0" />
             <element signature="e#13199#13408#0" />
@@ -945,7 +933,6 @@
             <element signature="e#26876#26983#0" />
             <element signature="e#27059#27432#0" />
             <element signature="e#27474#27891#0" />
-            <element signature="e#27731#27887#0" />
             <element signature="e#27744#27777#0" />
             <element signature="e#28177#28182#0" />
             <element signature="e#27900#27915#0" />
