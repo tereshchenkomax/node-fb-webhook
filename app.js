@@ -300,14 +300,12 @@ function receivedMessage(event) {
 				'UPDATE\n' +
 				'SET userPic = EXCLUDED.userPic;\n';
 
-			ifNotExistCreatePath(path, pathOrig, pathCropped);
-
 			console.log(profile_pic);
 			console.log(username);
 
 			saveImageToDisk(profile_pic, pathOrig, username, (err) => {
 				if (err) console.log(err);
-				cropTheImage(pathOrig, pathCropped, username, cropTheImageCallbackWithQuery(text, values,pathOrig,username));
+				cropTheImage(pathOrig, pathCropped, username, cropTheImageCallbackWithQuery(text, values, pathOrig, username));
 			});
 		} else {
 			console.log('THE NEW PAGE TOKEN NEEDED');
@@ -970,6 +968,7 @@ function callSendAPI(messageData) {
 //TMS
 function saveImageToDisk(url, localPath, filename, callback) {
 	console.time("saveImageToDisk");
+	ifNotExistCreatePath(localPath);
 	request.head(url, function (err, res) {
 		if (err) {
 			return console.log(err);
@@ -983,6 +982,8 @@ function saveImageToDisk(url, localPath, filename, callback) {
 
 function cropTheImage(path, pathCropped, name, callback) {
 	//crop the result
+	ifNotExistCreatePath(path);
+	ifNotExistCreatePath(pathCropped);
 	sharp(path + name)
 		.resize(24, 24)
 		.toFile(pathCropped + name, (err) => {
@@ -1059,12 +1060,10 @@ function broadcastImageCallback(pathCropped, pathOrig, res, blockname) {
 	console.timeEnd("broadcastImageCallback");
 }
 
-function ifNotExistCreatePath(path, path2, path3) {
-	[...arguments].forEach(arg => {
-		if (!fs.existsSync(arg)) {
-			fs.mkdirSync(arg);
-		}
-	});
+function ifNotExistCreatePath(path) {
+	if (!fs.existsSync(path)) {
+		fs.mkdirSync(path);
+	}
 }
 
 //TMS
