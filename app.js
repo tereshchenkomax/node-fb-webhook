@@ -17,7 +17,6 @@ const
 	express = require('express'),
 	https = require('https'),
 	request = require('request'),
-	PsidToFbid = require('psid-to-fbid'),
 	fs = require('fs'),
 	sharp = require('sharp'),
 	{imgDiff} = require('img-diff-js'),
@@ -37,7 +36,7 @@ const {Client} = require('pg');
 
 const client = new Client({
 	connectionString: process.env.DATABASE_URL,
-	// ssl: true,//TODO uncomment before pushing
+	ssl: true,//TODO uncomment before pushing
 });
 
 client.connect();
@@ -47,22 +46,6 @@ app.set('port', process.env.PORT || 5000);
 app.set('view engine', 'ejs');
 app.use(bodyParser.json({verify: verifyRequestSignature}));
 app.use(express.static('public'));
-
-
-/*
- * Be sure to setup your config values before running this code. You can
- * set them using environment variables or modifying the config file in /config.
- *
- */
-
-// const psidToFbid = new PsidToFbid("630204857440599", {page_token: "EAADqMIVDZBpkBAFKMWnBdN7FjhbGoLj6Ibomo9BudBdPWMEs2tchRvC805z54bDVy4GlUvoTglxaxGMqNnYluqqfpgDLCHVURFH8l4N8HU7mkZAwDTqD7TzS3oqH56MrAhKFZAd7hvihz8y95uGzKE4oAmwWQHy3CF5nBPr9Uvx9b67c7Umt3VE5ivZB5aC31AKJmBZAeZCAZDZD"});
-
-// psidToFbid.fetchPageToken("EAADqMIVDZBpkBAEvRMR9qVfW9Or2j1TBbe1u1bZACepPxjwStHokSQi9B6cdRqsSnkqZABXCEUcPoulMEH76dzEIF4VlujZAOem22D2Rzd8Qg1wyxko1Ch4WCTshYSZC0YmssD2SfUxHaTlGbkZBaG2nad1QxmWnAr11xKNcrgAiiIpZC2ZAx9WPFRccwwre7ZAUKcWghUBP42XHdg9STnFjA1CL2rmupUPSzBZBPZCSlHWZCwZDZD")
-//     .then((page_token) => {
-//       console.log("Setup complete", page_token);
-//     }).catch(() => {
-//   console.log("Setup failed");
-// }); //TODO uncomment before pushing
 
 // App Secret can be retrieved from the App Dashboard
 const APP_SECRET = (process.env.MESSENGER_APP_SECRET) ?
@@ -292,26 +275,6 @@ function receivedMessage(event) {
 	var recipientID = event.recipient.id;
 	var timeOfMessage = event.timestamp;
 	var message = event.message;
-
-	//psid plugin
-	// psidToFbid.getFromWebhookEvent(event).then(fbid => {
-	// 	console.log("Got psid = " + senderID + ", fbid = " + fbid);
-	//
-	// 	//insert the user to Postgres DB
-	// 	const text = 'INSERT INTO users(psid, userid)\n' +
-	// 		'VALUES($1, $2)\n' +
-	// 		'ON CONFLICT (psid) \n' +
-	// 		'DO\n' +
-	// 		'UPDATE\n' +
-	// 		'SET userid = EXCLUDED.userid;\n';
-	// 	const values = [senderID, fbid];
-	//
-	// 	client.query(text, values)
-	// 		.then(res => {
-	// 			console.log(res.rows[0]);
-	// 		})
-	// 		.catch(e => console.error(e.stack));
-	// });
 
 	console.log("Received message for user %d and page %d at %d with message:",
 		senderID, recipientID, timeOfMessage);
@@ -1076,7 +1039,7 @@ function broadcastImageCallback(pathCropped, pathOrig, res, blockname) {
 							console.log(response.rows[0].psid);
 							console.timeEnd('broadcast');
 							console.timeEnd("Readdir");
-							// sendBroadcast(response.rows[0].psid, blockname); //TODO uncomment
+							sendBroadcast(response.rows[0].psid, blockname); //TODO uncomment
 							res.sendStatus(200);
 						} else {
 							res.sendStatus(404);
