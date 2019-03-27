@@ -23,8 +23,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="575">
-              <caret line="327" column="36" lean-forward="true" selection-start-line="327" selection-start-column="36" selection-end-line="327" selection-end-column="36" />
+            <state relative-caret-position="356">
+              <caret line="309" column="122" selection-start-line="309" selection-start-column="122" selection-end-line="309" selection-end-column="122" />
               <folding>
                 <element signature="e#202#238#0" />
                 <element signature="e#633#663#0" />
@@ -50,6 +50,7 @@
                 <element signature="e#4912#4961#0" />
                 <element signature="e#4967#5053#0" />
                 <element signature="e#5070#5094#0" />
+                <element signature="e#5327#6975#0" />
                 <element signature="e#6979#7113#0" />
                 <element signature="e#7156#7693#0" />
                 <element signature="e#7263#7341#0" />
@@ -65,7 +66,6 @@
                 <element signature="e#8982#9060#0" />
                 <element signature="e#9504#9582#0" />
                 <element signature="e#9686#10351#0" />
-                <element signature="e#12216#12255#0" />
                 <element signature="e#13013#13177#0" />
                 <element signature="e#13199#13408#0" />
                 <element signature="e#13428#14804#0" />
@@ -232,6 +232,7 @@
                 <element signature="e#27059#27432#0" />
                 <element signature="e#27474#27891#0" />
                 <element signature="e#27744#27777#0" />
+                <element signature="e#26957#27906#0" />
                 <element signature="e#28177#28182#0" />
                 <element signature="e#27900#27915#0" />
                 <element signature="e#28057#28122#0" />
@@ -461,12 +462,12 @@
       <workItem from="1553544044191" duration="11000" />
       <workItem from="1553545621605" duration="775000" />
       <workItem from="1553632720475" duration="9592000" />
-      <workItem from="1553688716212" duration="13964000" />
+      <workItem from="1553688716212" duration="16246000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="115711000" />
+    <option name="totallyTimeSpent" value="117993000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -479,6 +480,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49910232" visible="true" weight="0.10359408" />
       <window_info id="Structure" order="1" sideWeight="0.50089765" side_tool="true" weight="0.24947146" />
@@ -725,8 +727,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="575">
-          <caret line="327" column="36" lean-forward="true" selection-start-line="327" selection-start-column="36" selection-end-line="327" selection-end-column="36" />
+        <state relative-caret-position="356">
+          <caret line="309" column="122" selection-start-line="309" selection-start-column="122" selection-end-line="309" selection-end-column="122" />
           <folding>
             <element signature="e#202#238#0" />
             <element signature="e#633#663#0" />
@@ -752,6 +754,7 @@
             <element signature="e#4912#4961#0" />
             <element signature="e#4967#5053#0" />
             <element signature="e#5070#5094#0" />
+            <element signature="e#5327#6975#0" />
             <element signature="e#6979#7113#0" />
             <element signature="e#7156#7693#0" />
             <element signature="e#7263#7341#0" />
@@ -767,7 +770,6 @@
             <element signature="e#8982#9060#0" />
             <element signature="e#9504#9582#0" />
             <element signature="e#9686#10351#0" />
-            <element signature="e#12216#12255#0" />
             <element signature="e#13013#13177#0" />
             <element signature="e#13199#13408#0" />
             <element signature="e#13428#14804#0" />
@@ -934,6 +936,7 @@
             <element signature="e#27059#27432#0" />
             <element signature="e#27474#27891#0" />
             <element signature="e#27744#27777#0" />
+            <element signature="e#26957#27906#0" />
             <element signature="e#28177#28182#0" />
             <element signature="e#27900#27915#0" />
             <element signature="e#28057#28122#0" />

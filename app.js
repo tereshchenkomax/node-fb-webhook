@@ -287,50 +287,31 @@ function receivedMessage(event) {
 		}
 		console.time("getAndCompressImgFromWebhook");
 		let {profile_pic, first_name, last_name} = JSON.parse(res.body);
-		let username = first_name + last_name + senderID + '.jpg';
-		let path = './userPhotos/';
-		let pathOrig = './userPhotos/original/';
-		let pathCropped = './userPhotos/cropped/';
-		const text = 'INSERT INTO users(psid, userpic)\n' +
-			'VALUES($1, $2)\n' +
-			'ON CONFLICT (psid) \n' +
-			'DO\n' +
-			'UPDATE\n' +
-			'SET userPic = EXCLUDED.userPic;\n';
+		if (profile_pic !== 'undefined') {
+			let username = first_name + last_name + senderID + '.jpg';
+			let path = './userPhotos/';
+			let pathOrig = './userPhotos/original/';
+			let pathCropped = './userPhotos/cropped/';
+			const values = [senderID, username];
+			const text = 'INSERT INTO users(psid, userpic)\n' +
+				'VALUES($1, $2)\n' +
+				'ON CONFLICT (psid) \n' +
+				'DO\n' +
+				'UPDATE\n' +
+				'SET userPic = EXCLUDED.userPic;\n';
 
-		ifNotExistCreatePath(path);
-		ifNotExistCreatePath(pathOrig);
-		ifNotExistCreatePath(pathCropped);
+			ifNotExistCreatePath(path, pathOrig, pathCropped);
 
-		console.log(profile_pic);
-		console.log(username);
+			console.log(profile_pic);
+			console.log(username);
 
-		saveImageToDisk(profile_pic, pathOrig, username, (err) => {
-			if (err) {
-				return console.log(err);
-			}
-			//crop the result
-			sharp(pathOrig + username)
-				.resize(24, 24)
-				.toFile(pathCropped + username, (err) => {
-					if (err) {
-						return console.log(err);
-					}
-					// insert the data to DB
-
-					const values = [senderID, username];
-
-					client.query(text, values)
-						.then(res => console.log(res.rows[0]))
-						.catch(e => console.error(e.stack));
-
-					fs.unlinkSync(pathOrig + username);
-					console.timeEnd("getAndCompressImgFromWebhook");
-
-				})
-				.catch(err => console.log(err));
-		});
-
+			saveImageToDisk(profile_pic, pathOrig, username, (err) => {
+				if (err) console.log(err);
+				cropTheImage(pathOrig, pathCropped, username, cropTheImageCallbackWithQuery(text, values,pathOrig,username));
+			});
+		} else {
+			console.log('THE NEW PAGE TOKEN NEEDED');
+		}
 	});
 
 	var isEcho = message.is_echo;
@@ -1000,6 +981,27 @@ function saveImageToDisk(url, localPath, filename, callback) {
 	console.timeEnd("saveImageToDisk");
 }
 
+function cropTheImage(path, pathCropped, name, callback) {
+	//crop the result
+	sharp(path + name)
+		.resize(24, 24)
+		.toFile(pathCropped + name, (err) => {
+			if (err) {
+				return console.log(err);
+			}
+			// insert the data to DB
+			callback();
+			console.timeEnd("getAndCompressImgFromWebhook");
+		})
+		.catch(err => console.log(err));
+}
+
+function cropTheImageCallbackWithQuery(text, values, pathOrig, username) {
+	client.query(text, values)
+		.then(res => fs.unlinkSync(pathOrig + username))
+		.catch(e => console.error(e.stack));
+}
+
 function sendBroadcast(user, blockname) {
 	const url = `https://api.chatfuel.com/bots/${CHATFUEL_BOT_ID}/users/${user}/send?chatfuel_token=${CHATFUEL_TOKEN}&chatfuel_message_tag=UPDATE&chatfuel_block_name=${blockname}`; //TODO control the URL
 
@@ -1057,10 +1059,12 @@ function broadcastImageCallback(pathCropped, pathOrig, res, blockname) {
 	console.timeEnd("broadcastImageCallback");
 }
 
-function ifNotExistCreatePath (path){
-	if (!fs.existsSync(path)) {
-		fs.mkdirSync(path);
-	}
+function ifNotExistCreatePath(path, path2, path3) {
+	[...arguments].forEach(arg => {
+		if (!fs.existsSync(arg)) {
+			fs.mkdirSync(arg);
+		}
+	});
 }
 
 //TMS
