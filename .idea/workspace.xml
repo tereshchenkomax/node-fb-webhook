@@ -25,8 +25,8 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/app.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="66">
-                  <caret line="1068" column="25" selection-start-line="1068" selection-start-column="25" selection-end-line="1068" selection-end-column="25" />
+                <state relative-caret-position="236">
+                  <caret line="1064" selection-start-line="1064" selection-end-line="1064" />
                   <folding>
                     <element signature="e#202#238#0" />
                     <element signature="e#633#663#0" />
@@ -261,8 +261,8 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/app.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-19">
-                  <caret line="282" selection-start-line="282" selection-end-line="282" />
+                <state relative-caret-position="104">
+                  <caret line="147" lean-forward="true" selection-start-line="147" selection-end-line="172" />
                   <folding>
                     <element signature="e#202#238#0" />
                     <element signature="e#594#624#0" />
@@ -289,9 +289,6 @@
                     <element signature="e#3941#3990#0" />
                     <element signature="e#3996#4082#0" />
                     <element signature="e#4099#4123#0" />
-                    <element signature="e#4742#4795#0" />
-                    <element signature="e#4830#4862#0" />
-                    <element signature="e#5005#5032#0" />
                     <element signature="e#5039#5173#0" />
                     <element signature="e#5216#5753#0" />
                     <element signature="e#5323#5401#0" />
@@ -307,6 +304,7 @@
                     <element signature="e#7042#7120#0" />
                     <element signature="e#7564#7642#0" />
                     <element signature="e#7746#8411#0" />
+                    <element signature="e#8447#12196#0" />
                     <element signature="e#8939#8972#0" />
                     <element signature="e#10177#10341#0" />
                     <element signature="e#10363#10572#0" />
@@ -685,12 +683,12 @@
       <workItem from="1553544044191" duration="11000" />
       <workItem from="1553545621605" duration="775000" />
       <workItem from="1553632720475" duration="9592000" />
-      <workItem from="1553688716212" duration="32300000" />
+      <workItem from="1553688716212" duration="32623000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="134047000" />
+    <option name="totallyTimeSpent" value="134370000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -953,8 +951,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="66">
-          <caret line="1068" column="25" selection-start-line="1068" selection-start-column="25" selection-end-line="1068" selection-end-column="25" />
+        <state relative-caret-position="236">
+          <caret line="1064" selection-start-line="1064" selection-end-line="1064" />
           <folding>
             <element signature="e#202#238#0" />
             <element signature="e#633#663#0" />

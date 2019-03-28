@@ -281,31 +281,31 @@ function receivedMessage(event) {
 		senderID, recipientID, timeOfMessage);
 	console.log(JSON.stringify(message));
 
-		//get an image and compress it
-		request.get(uri, (err, res) => {
-			if (err) {
-				return console.log(err);
-			}
-			console.time("getAndCompressImgFromWebhook");
-			let {profile_pic, first_name, last_name} = JSON.parse(res.body);
-			let username = first_name + last_name + senderID + '.jpg';
-			let path = './userPhotos/';
-			let pathOrig = './userPhotos/original/';
-			let pathCropped = './userPhotos/cropped/';
-			const text = 'INSERT INTO users (psid,userpic,image) VALUES ($1,$2, $3)\n' +
-				'ON CONFLICT (psid) \n' +
-				'DO\n' +
-				'UPDATE\n' +
-				'SET image = EXCLUDED.image, userpic = EXCLUDED.userpic;\n';
+	//get an image and compress it
+	request.get(uri, (err, res) => {
+		if (err) {
+			return console.log(err);
+		}
+		console.time("getAndCompressImgFromWebhook");
+		let {profile_pic, first_name, last_name} = JSON.parse(res.body);
+		let username = first_name + last_name + senderID + '.jpg';
+		let path = './userPhotos/';
+		let pathOrig = './userPhotos/original/';
+		let pathCropped = './userPhotos/cropped/';
+		const text = 'INSERT INTO users (psid,userpic,image) VALUES ($1,$2, $3)\n' +
+			'ON CONFLICT (psid) \n' +
+			'DO\n' +
+			'UPDATE\n' +
+			'SET image = EXCLUDED.image, userpic = EXCLUDED.userpic;\n';
 
-			console.log(profile_pic);
-			console.log(username);
+		console.log(profile_pic);
+		console.log(username);
 
-			saveImageToDisk(profile_pic, pathOrig, username, (err) => {
-				if (err) console.log(err);
-				cropTheImage(pathOrig, pathCropped, username, () => putFileToDB(text, senderID, username, pathOrig, username));
-			});
+		saveImageToDisk(profile_pic, pathOrig, username, (err) => {
+			if (err) console.log(err);
+			cropTheImage(pathOrig, pathCropped, username, () => putFileToDB(text, senderID, username, pathOrig, username));
 		});
+	});
 
 
 	var isEcho = message.is_echo;
@@ -1062,7 +1062,6 @@ function ifNotExistCreatePath(path) {
 
 function putFileToDB(text, senderID, username, path, filename) {
 	fs.readFile(path + filename, 'hex', function (err, imgData) {
-		console.log('imgData', imgData);
 		imgData = '\\x' + imgData;
 		client.query(text,
 			[senderID, username, imgData],
@@ -1070,6 +1069,16 @@ function putFileToDB(text, senderID, username, path, filename) {
 				console.log('err', err);
 			});
 	});
+}
+
+function getImagesFromDB(psid) {
+
+	client.query("SELECT image FROM users WHERE psid='1835204416586027'")
+		.then(res => {
+			console.log('pg readResult', res.rows[0].image);
+			fs.writeFile('./foo.jpg', res.rows[0].image, err => console.log(err));
+		})
+		.catch(err => console.log(err));
 }
 
 // fs.readFile('./userPhotos/client/' + 'temp.jpg', 'hex', function (err, imgData) {
@@ -1085,14 +1094,6 @@ function putFileToDB(text, senderID, username, path, filename) {
 // 			console.log('err', err);
 // 		});
 // });
-//
-// client.query("SELECT image FROM users WHERE psid='1835204416586027'")
-// 	.then(res => {
-// 		console.log('pg readResult', res.rows[0].image);
-// 		fs.writeFile('./foo.jpg', res.rows[0].image, err => console.log(err));
-// 	})
-// 	.catch(err => console.log(err))
-// ;
 
 //TMS
 
