@@ -969,7 +969,8 @@ function saveImageToDisk(url, localPath, filename, callback) {
 		if (err) {
 			return console.log(err);
 		} else if (res.headers['content-type'] == 'image/jpeg') {
-			request(url).pipe(fs.createWriteStream(localPath + filename)).on('close', callback);
+			request(url).pipe(fs.writeFile(localPath + filename)).on('close', callback);
+			console.log('THE FILE SHOULD BE WRITTEN');
 		}
 	});
 
