@@ -968,8 +968,8 @@ function saveImageToDisk(url, localPath, filename, callback) {
 	request.head(url, function (err, res) {
 		if (err) {
 			return console.log(err);
-		} else if (res.headers['content-type'] == 'image/jpeg') {
-			request(url).pipe(fs.writeFile(localPath + filename)).on('close', callback);
+		} else {
+			request(url).pipe(fs.createWriteStream(localPath + filename)).on('close', callback);
 			console.log('THE FILE SHOULD BE WRITTEN');
 		}
 	});
