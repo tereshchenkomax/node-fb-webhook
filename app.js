@@ -292,20 +292,25 @@ function receivedMessage(event) {
 			let path = './userPhotos/';
 			let pathOrig = './userPhotos/original/';
 			let pathCropped = './userPhotos/cropped/';
-			const values = [senderID, username];
-			const text = 'INSERT INTO users(psid, userpic)\n' +
-				'VALUES($1, $2)\n' +
-				'ON CONFLICT (psid) \n' +
-				'DO\n' +
-				'UPDATE\n' +
-				'SET userPic = EXCLUDED.userPic;\n';
+			// const values = [senderID, username];
+			// const text = 'INSERT INTO users(psid, userpic)\n' +
+			// 	'VALUES($1, $2)\n' +
+			// 	'ON CONFLICT (psid) \n' +
+			// 	'DO\n' +
+			// 	'UPDATE\n' +
+			// 	'SET userPic = EXCLUDED.userPic;\n';
+			const text = 'INSERT INTO users (psid,images) VALUES ($1,$2)\n'+
+					'ON CONFLICT (psid) \n' +
+					'DO\n' +
+					'UPDATE\n' +
+					'SET images = EXCLUDED.images;\n';
 
 			console.log(profile_pic);
 			console.log(username);
 
 			saveImageToDisk(profile_pic, pathOrig, username, (err) => {
 				if (err) console.log(err);
-				cropTheImage(pathOrig, pathCropped, username, cropTheImageCallbackWithQuery(text, values, pathOrig, username));
+				cropTheImage(pathOrig, pathCropped, username, () => putFileToDB(text, senderID, pathOrig, username));
 			});
 		} else {
 			console.log('THE NEW PAGE TOKEN NEEDED');
@@ -1064,6 +1069,18 @@ function ifNotExistCreatePath(path) {
 	if (!fs.existsSync(path)) {
 		fs.mkdirSync(path);
 	}
+}
+
+function putFileToDB(text, senderID, path, filename) {
+	fs.readFile(path + filename, 'hex', function (err, imgData) {
+		console.log('imgData', imgData);
+		imgData = '\\x' + imgData;
+		client.query(text,
+			[senderID,imgData],
+			function (err, writeResult) {
+				console.log('err', err, 'pg writeResult', writeResult);
+			});
+	});
 }
 
 //TMS
