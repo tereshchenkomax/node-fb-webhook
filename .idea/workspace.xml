@@ -23,8 +23,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="176">
-              <caret line="302" column="75" selection-start-line="302" selection-start-column="64" selection-end-line="302" selection-end-column="75" />
+            <state relative-caret-position="418">
+              <caret line="1083" column="40" lean-forward="true" selection-start-line="1083" selection-start-column="40" selection-end-line="1083" selection-end-column="40" />
               <folding>
                 <element signature="e#202#238#0" />
                 <element signature="e#633#663#0" />
@@ -73,6 +73,7 @@
                 <element signature="e#8939#8972#0" />
                 <element signature="e#13013#13177#0" />
                 <element signature="e#13199#13408#0" />
+                <element signature="e#10712#10733#0" />
                 <element signature="e#14911#15141#0" />
                 <element signature="e#15187#15624#0" />
                 <element signature="e#15417#15555#0" />
@@ -452,12 +453,12 @@
       <workItem from="1553544044191" duration="11000" />
       <workItem from="1553545621605" duration="775000" />
       <workItem from="1553632720475" duration="9592000" />
-      <workItem from="1553688716212" duration="34147000" />
+      <workItem from="1553688716212" duration="35470000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="135894000" />
+    <option name="totallyTimeSpent" value="137217000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -694,13 +695,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="5" selection-start-line="2" selection-start-column="5" selection-end-line="2" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/psid.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="165">
@@ -717,10 +711,17 @@
     <entry file="file://$PROJECT_DIR$/foo.jpg">
       <provider selected="true" editor-type-id="images" />
     </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="5" selection-start-line="2" selection-start-column="5" selection-end-line="2" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="302" column="75" selection-start-line="302" selection-start-column="64" selection-end-line="302" selection-end-column="75" />
+        <state relative-caret-position="418">
+          <caret line="1083" column="40" lean-forward="true" selection-start-line="1083" selection-start-column="40" selection-end-line="1083" selection-end-column="40" />
           <folding>
             <element signature="e#202#238#0" />
             <element signature="e#633#663#0" />
@@ -769,6 +770,7 @@
             <element signature="e#8939#8972#0" />
             <element signature="e#13013#13177#0" />
             <element signature="e#13199#13408#0" />
+            <element signature="e#10712#10733#0" />
             <element signature="e#14911#15141#0" />
             <element signature="e#15187#15624#0" />
             <element signature="e#15417#15555#0" />

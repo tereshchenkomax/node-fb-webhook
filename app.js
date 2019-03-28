@@ -1069,6 +1069,9 @@ function putFileToDB(text, senderID, username, path, filename) {
 }
 
 function getImagesFromDB(callback) {
+
+	console.time('getImagesFromDB');
+
 	client.query("SELECT image FROM users")
 		.then(res => {
 			for (let i = 0; i < res.rows.length; i++) {
@@ -1077,6 +1080,7 @@ function getImagesFromDB(callback) {
 			}
 		})
 		.then(()=>callback)
+		.then(()=>	console.timeEnd('getImagesFromDB'))
 		.catch(err => console.log(err));
 }
 
