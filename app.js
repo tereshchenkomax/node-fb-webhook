@@ -990,8 +990,7 @@ function cropTheImage(path, pathCropped, name, callback) {
 			// insert the data to DB
 			callback();
 			console.timeEnd("getAndCompressImgFromWebhook");
-		})
-		.catch(err => console.log(err));
+		});
 }
 
 function cropTheImageCallbackWithQuery(text, values, pathOrig, username) {
