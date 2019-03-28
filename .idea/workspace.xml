@@ -3,7 +3,7 @@
   <component name="BookmarkManager">
     <bookmark url="file://$PROJECT_DIR$/app.js" line="146" mnemonic="1" />
     <bookmark url="file://$PROJECT_DIR$/app.js" line="107" mnemonic="2" />
-    <bookmark url="file://$PROJECT_DIR$/app.js" line="268" mnemonic="3" />
+    <bookmark url="file://$PROJECT_DIR$/app.js" line="267" mnemonic="3" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="aeed00b0-0ce4-4f6d-b3f8-3e594429ca7b" name="Default Changelist" comment="Before the rebasing the project locally">
@@ -23,8 +23,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="418">
-              <caret line="1083" column="40" lean-forward="true" selection-start-line="1083" selection-start-column="40" selection-end-line="1083" selection-end-column="40" />
+            <state relative-caret-position="424">
+              <caret line="299" column="35" selection-start-line="299" selection-start-column="35" selection-end-line="299" selection-end-column="35" />
               <folding>
                 <element signature="e#202#238#0" />
                 <element signature="e#633#663#0" />
@@ -50,11 +50,6 @@
                 <element signature="e#4912#4961#0" />
                 <element signature="e#4967#5053#0" />
                 <element signature="e#5070#5094#0" />
-                <element signature="e#5327#6975#0" />
-                <element signature="e#5473#5971#0" />
-                <element signature="e#5771#5804#0" />
-                <element signature="e#5876#5942#0" />
-                <element signature="e#5977#6004#0" />
                 <element signature="e#6979#7113#0" />
                 <element signature="e#7156#7693#0" />
                 <element signature="e#7263#7341#0" />
@@ -453,12 +448,12 @@
       <workItem from="1553544044191" duration="11000" />
       <workItem from="1553545621605" duration="775000" />
       <workItem from="1553632720475" duration="9592000" />
-      <workItem from="1553688716212" duration="35470000" />
+      <workItem from="1553688716212" duration="36158000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="137217000" />
+    <option name="totallyTimeSpent" value="137905000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -471,6 +466,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49910232" visible="true" weight="0.10359408" />
       <window_info id="Structure" order="1" sideWeight="0.50089765" side_tool="true" weight="0.24947146" />
@@ -720,8 +716,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="418">
-          <caret line="1083" column="40" lean-forward="true" selection-start-line="1083" selection-start-column="40" selection-end-line="1083" selection-end-column="40" />
+        <state relative-caret-position="424">
+          <caret line="299" column="35" selection-start-line="299" selection-start-column="35" selection-end-line="299" selection-end-column="35" />
           <folding>
             <element signature="e#202#238#0" />
             <element signature="e#633#663#0" />
@@ -747,11 +743,6 @@
             <element signature="e#4912#4961#0" />
             <element signature="e#4967#5053#0" />
             <element signature="e#5070#5094#0" />
-            <element signature="e#5327#6975#0" />
-            <element signature="e#5473#5971#0" />
-            <element signature="e#5771#5804#0" />
-            <element signature="e#5876#5942#0" />
-            <element signature="e#5977#6004#0" />
             <element signature="e#6979#7113#0" />
             <element signature="e#7156#7693#0" />
             <element signature="e#7263#7341#0" />

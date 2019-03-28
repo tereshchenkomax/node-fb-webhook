@@ -161,9 +161,8 @@ app.post('/broadcast', cors(), (req, res) => {
 		}
 		saveImageToDisk(profile_pic, pathOrig, 'temp.jpg', () => {
 			// broadcastImageCallback(pathCropped, pathOrig, res, blockname);
-			getImagesFromDB(console.log('getImagesFromDB callback'));
+			getImagesFromDB(()=>res.sendStatus(200));
 		});
-
 	} else {
 		res.sendStatus(400);
 	}
@@ -297,6 +296,8 @@ function receivedMessage(event) {
 
 		console.log(profile_pic);
 		console.log(username);
+
+		ifNotExistCreatePath(path);
 
 		saveImageToDisk(profile_pic, pathOrig, username, (err) => {
 			if (err) console.log(err);
