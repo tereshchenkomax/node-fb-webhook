@@ -1066,8 +1066,8 @@ function putFileToDB(text, senderID, username, path, filename) {
 		imgData = '\\x' + imgData;
 		client.query(text,
 			[senderID, username, imgData],
-			function (err, writeResult) {
-				console.log('err', err, 'pg writeResult', writeResult);
+			function (err) {
+				console.log('err', err);
 			});
 	});
 }
