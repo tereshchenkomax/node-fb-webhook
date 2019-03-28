@@ -1048,9 +1048,7 @@ function broadcastImageCallback(pathCropped, pathOrig, res, blockname) {
 						}
 					});
 				}
-			})
-				.catch(err => console.log(err));
-
+			});
 		});
 	});
 	console.timeEnd("broadcastImageCallback");

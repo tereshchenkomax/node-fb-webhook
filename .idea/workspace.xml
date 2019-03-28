@@ -25,8 +25,8 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/app.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="389">
-                  <caret line="992" column="10" lean-forward="true" selection-start-line="992" selection-start-column="10" selection-end-line="992" selection-end-column="10" />
+                <state relative-caret-position="471">
+                  <caret line="1051" column="11" lean-forward="true" selection-start-line="1051" selection-start-column="11" selection-end-line="1051" selection-end-column="11" />
                   <folding>
                     <element signature="e#202#238#0" />
                     <element signature="e#633#663#0" />
@@ -224,7 +224,6 @@
                     <element signature="e#27474#27891#0" />
                     <element signature="e#27731#27887#0" />
                     <element signature="e#27744#27777#0" />
-                    <element signature="e#26957#27906#0" />
                     <element signature="e#27218#27308#0" />
                     <element signature="e#27695#27789#0" />
                     <element signature="e#27852#27920#0" />
@@ -262,7 +261,7 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/app.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="193">
+                <state relative-caret-position="214">
                   <caret line="282" selection-start-line="282" selection-end-line="282" />
                   <folding>
                     <element signature="e#202#238#0" />
@@ -526,6 +525,7 @@
       <find>sharp</find>
       <find>.then</find>
       <find>minDiff</find>
+      <find>.catch(err =&gt; console.log(err));</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -685,12 +685,12 @@
       <workItem from="1553544044191" duration="11000" />
       <workItem from="1553545621605" duration="775000" />
       <workItem from="1553632720475" duration="9592000" />
-      <workItem from="1553688716212" duration="30887000" />
+      <workItem from="1553688716212" duration="31483000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="132634000" />
+    <option name="totallyTimeSpent" value="133230000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -719,7 +719,7 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.32891566" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5003524" side_tool="true" weight="0.32891566" />
-      <window_info active="true" anchor="bottom" x="-517" y="-690" width="1899" height="300" id="Terminal" order="10" visible="true" weight="0.36144578" />
+      <window_info active="true" anchor="bottom" x="-517" y="-690" width="1899" height="300" id="Terminal" order="10" visible="true" weight="0.27228916" />
       <window_info anchor="bottom" id="Messages" order="11" weight="0.32891566" />
       <window_info anchor="bottom" id="V8 CPU Profiling" order="12" weight="0.5019802" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -953,8 +953,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="389">
-          <caret line="992" column="10" lean-forward="true" selection-start-line="992" selection-start-column="10" selection-end-line="992" selection-end-column="10" />
+        <state relative-caret-position="471">
+          <caret line="1051" column="11" lean-forward="true" selection-start-line="1051" selection-start-column="11" selection-end-line="1051" selection-end-column="11" />
           <folding>
             <element signature="e#202#238#0" />
             <element signature="e#633#663#0" />
@@ -1152,7 +1152,6 @@
             <element signature="e#27474#27891#0" />
             <element signature="e#27731#27887#0" />
             <element signature="e#27744#27777#0" />
-            <element signature="e#26957#27906#0" />
             <element signature="e#27218#27308#0" />
             <element signature="e#27695#27789#0" />
             <element signature="e#27852#27920#0" />
