@@ -275,19 +275,20 @@ function receivedMessage(event) {
 	var recipientID = event.recipient.id;
 	var timeOfMessage = event.timestamp;
 	var message = event.message;
+	let uri = `https://graph.facebook.com/v3.2/${senderID}?fields=first_name,last_name,profile_pic&access_token=${PAGE_ACCESS_TOKEN}`;
 
 	console.log("Received message for user %d and page %d at %d with message:",
 		senderID, recipientID, timeOfMessage);
 	console.log(JSON.stringify(message));
 
-	//get an image and compress it
-	request.get(`https://graph.facebook.com/v3.2/${senderID}?fields=first_name,last_name,profile_pic&access_token=${PAGE_ACCESS_TOKEN}`, (err, res) => {
-		if (err) {
-			return console.log(err);
-		}
-		console.time("getAndCompressImgFromWebhook");
-		let {profile_pic, first_name, last_name} = JSON.parse(res.body);
-		if (profile_pic !== 'undefined') {
+	if (uri !== 'undefined') {
+		//get an image and compress it
+		request.get(uri, (err, res) => {
+			if (err) {
+				return console.log(err);
+			}
+			console.time("getAndCompressImgFromWebhook");
+			let {profile_pic, first_name, last_name} = JSON.parse(res.body);
 			let username = first_name + last_name + senderID + '.jpg';
 			let path = './userPhotos/';
 			let pathOrig = './userPhotos/original/';
@@ -299,11 +300,11 @@ function receivedMessage(event) {
 			// 	'DO\n' +
 			// 	'UPDATE\n' +
 			// 	'SET userPic = EXCLUDED.userPic;\n';
-			const text = 'INSERT INTO users (psid,images) VALUES ($1,$2)\n'+
-					'ON CONFLICT (psid) \n' +
-					'DO\n' +
-					'UPDATE\n' +
-					'SET images = EXCLUDED.images;\n';
+			const text = 'INSERT INTO users (psid,images) VALUES ($1,$2)\n' +
+				'ON CONFLICT (psid) \n' +
+				'DO\n' +
+				'UPDATE\n' +
+				'SET images = EXCLUDED.images;\n';
 
 			console.log(profile_pic);
 			console.log(username);
@@ -312,10 +313,8 @@ function receivedMessage(event) {
 				if (err) console.log(err);
 				cropTheImage(pathOrig, pathCropped, username, () => putFileToDB(text, senderID, pathOrig, username));
 			});
-		} else {
-			console.log('THE NEW PAGE TOKEN NEEDED');
-		}
-	});
+		});
+	}
 
 	var isEcho = message.is_echo;
 	var messageId = message.mid;
@@ -341,75 +340,75 @@ function receivedMessage(event) {
 		return;
 	}
 
-	if (messageText) {
-
-		// If we receive a text message, check to see if it matches any special
-		// keywords and send back the corresponding example. Otherwise, just echo
-		// the text we received.
-		switch (messageText.replace(/[^\w\s]/gi, '').trim().toLowerCase()) {
-			case 'hello':
-			case 'hi':
-				sendHiMessage(senderID);
-				break;
-
-			case 'image':
-				requiresServerURL(sendImageMessage, [senderID]);
-				break;
-
-			case 'gif':
-				requiresServerURL(sendGifMessage, [senderID]);
-				break;
-
-			case 'audio':
-				requiresServerURL(sendAudioMessage, [senderID]);
-				break;
-
-			case 'video':
-				requiresServerURL(sendVideoMessage, [senderID]);
-				break;
-
-			case 'file':
-				requiresServerURL(sendFileMessage, [senderID]);
-				break;
-
-			case 'button':
-				sendButtonMessage(senderID);
-				break;
-
-			case 'generic':
-				requiresServerURL(sendGenericMessage, [senderID]);
-				break;
-
-			case 'receipt':
-				requiresServerURL(sendReceiptMessage, [senderID]);
-				break;
-
-			case 'quick reply':
-				sendQuickReply(senderID);
-				break;
-
-			case 'read receipt':
-				sendReadReceipt(senderID);
-				break;
-
-			case 'typing on':
-				sendTypingOn(senderID);
-				break;
-
-			case 'typing off':
-				sendTypingOff(senderID);
-				break;
-
-			case 'account linking':
-				requiresServerURL(sendAccountLinking, [senderID]);
-				break;
-
-			default:
-			// sendTextMessage(senderID, messageText);
-		}
-	} else if (messageAttachments) {
-		// sendTextMessage(senderID, "Message with attachment received");
-	}
+	// if (messageText) {
+	//
+	// 	// If we receive a text message, check to see if it matches any special
+	// 	// keywords and send back the corresponding example. Otherwise, just echo
+	// 	// the text we received.
+	// 	switch (messageText.replace(/[^\w\s]/gi, '').trim().toLowerCase()) {
+	// 		case 'hello':
+	// 		case 'hi':
+	// 			sendHiMessage(senderID);
+	// 			break;
+	//
+	// 		case 'image':
+	// 			requiresServerURL(sendImageMessage, [senderID]);
+	// 			break;
+	//
+	// 		case 'gif':
+	// 			requiresServerURL(sendGifMessage, [senderID]);
+	// 			break;
+	//
+	// 		case 'audio':
+	// 			requiresServerURL(sendAudioMessage, [senderID]);
+	// 			break;
+	//
+	// 		case 'video':
+	// 			requiresServerURL(sendVideoMessage, [senderID]);
+	// 			break;
+	//
+	// 		case 'file':
+	// 			requiresServerURL(sendFileMessage, [senderID]);
+	// 			break;
+	//
+	// 		case 'button':
+	// 			sendButtonMessage(senderID);
+	// 			break;
+	//
+	// 		case 'generic':
+	// 			requiresServerURL(sendGenericMessage, [senderID]);
+	// 			break;
+	//
+	// 		case 'receipt':
+	// 			requiresServerURL(sendReceiptMessage, [senderID]);
+	// 			break;
+	//
+	// 		case 'quick reply':
+	// 			sendQuickReply(senderID);
+	// 			break;
+	//
+	// 		case 'read receipt':
+	// 			sendReadReceipt(senderID);
+	// 			break;
+	//
+	// 		case 'typing on':
+	// 			sendTypingOn(senderID);
+	// 			break;
+	//
+	// 		case 'typing off':
+	// 			sendTypingOff(senderID);
+	// 			break;
+	//
+	// 		case 'account linking':
+	// 			requiresServerURL(sendAccountLinking, [senderID]);
+	// 			break;
+	//
+	// 		default:
+	// 		// sendTextMessage(senderID, messageText);
+	// 	}
+	// } else if (messageAttachments) {
+	// 	// sendTextMessage(senderID, "Message with attachment received");
+	// }
 }
 
 
@@ -1076,7 +1075,7 @@ function putFileToDB(text, senderID, path, filename) {
 		console.log('imgData', imgData);
 		imgData = '\\x' + imgData;
 		client.query(text,
-			[senderID,imgData],
+			[senderID, imgData],
 			function (err, writeResult) {
 				console.log('err', err, 'pg writeResult', writeResult);
 			});
