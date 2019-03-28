@@ -155,16 +155,13 @@ app.post('/broadcast', cors(), (req, res) => {
 		let profile_pic = `https://graph.facebook.com/${userid}/picture?height=24&width=24`;
 		let pathOrig = './userPhotos/client/';
 		let pathCropped = './userPhotos/cropped/';
-		const options = {
-			directory: pathOrig,
-			filename: 'temp.jpg'
-		};
 
 		if (!fs.existsSync(pathOrig)) {
 			fs.mkdirSync(pathOrig);
 		}
 		saveImageToDisk(profile_pic, pathOrig, 'temp.jpg', () => {
-			broadcastImageCallback(pathCropped, pathOrig, res, blockname);
+			// broadcastImageCallback(pathCropped, pathOrig, res, blockname);
+			getImagesFromDB(console.log('getImagesFromDB callback'));
 		});
 
 	} else {
@@ -1071,13 +1068,15 @@ function putFileToDB(text, senderID, username, path, filename) {
 	});
 }
 
-function getImagesFromDB(psid) {
-
-	client.query("SELECT image FROM users WHERE psid='1835204416586027'")
+function getImagesFromDB(callback) {
+	client.query("SELECT image FROM users")
 		.then(res => {
-			console.log('pg readResult', res.rows[0].image);
-			fs.writeFile('./foo.jpg', res.rows[0].image, err => console.log(err));
+			for (let i = 0; i < res.rows.length; i++) {
+				// console.log('pg readResult', res.rows[0].image);
+				fs.writeFile(`.userPhotos/foo${i}.jpg`, res.rows[i].image, err => console.log(err));
+			}
 		})
+		.then(()=>callback)
 		.catch(err => console.log(err));
 }
 
