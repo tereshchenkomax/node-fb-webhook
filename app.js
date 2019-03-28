@@ -281,7 +281,6 @@ function receivedMessage(event) {
 		senderID, recipientID, timeOfMessage);
 	console.log(JSON.stringify(message));
 
-	if (uri !== 'undefined') {
 		//get an image and compress it
 		request.get(uri, (err, res) => {
 			if (err) {
@@ -293,28 +292,21 @@ function receivedMessage(event) {
 			let path = './userPhotos/';
 			let pathOrig = './userPhotos/original/';
 			let pathCropped = './userPhotos/cropped/';
-			// const values = [senderID, username];
-			// const text = 'INSERT INTO users(psid, userpic)\n' +
-			// 	'VALUES($1, $2)\n' +
-			// 	'ON CONFLICT (psid) \n' +
-			// 	'DO\n' +
-			// 	'UPDATE\n' +
-			// 	'SET userPic = EXCLUDED.userPic;\n';
-			const text = 'INSERT INTO users (psid,images) VALUES ($1,$2)\n' +
+			const text = 'INSERT INTO users (psid,userpic,image) VALUES ($1,$2, $3)\n' +
 				'ON CONFLICT (psid) \n' +
 				'DO\n' +
 				'UPDATE\n' +
-				'SET images = EXCLUDED.images;\n';
+				'SET image = EXCLUDED.image, userpic = EXCLUDED.userpic;\n';
 
 			console.log(profile_pic);
 			console.log(username);
 
 			saveImageToDisk(profile_pic, pathOrig, username, (err) => {
 				if (err) console.log(err);
-				cropTheImage(pathOrig, pathCropped, username, () => putFileToDB(text, senderID, pathOrig, username));
+				cropTheImage(pathOrig, pathCropped, username, () => putFileToDB(text, senderID, username, pathOrig, username));
 			});
 		});
-	}
+
 
 	var isEcho = message.is_echo;
 	var messageId = message.mid;
@@ -1070,17 +1062,39 @@ function ifNotExistCreatePath(path) {
 	}
 }
 
-function putFileToDB(text, senderID, path, filename) {
+function putFileToDB(text, senderID, username, path, filename) {
 	fs.readFile(path + filename, 'hex', function (err, imgData) {
 		console.log('imgData', imgData);
 		imgData = '\\x' + imgData;
 		client.query(text,
-			[senderID, imgData],
+			[senderID, username, imgData],
 			function (err, writeResult) {
 				console.log('err', err, 'pg writeResult', writeResult);
 			});
 	});
 }
+
+// fs.readFile('./userPhotos/client/' + 'temp.jpg', 'hex', function (err, imgData) {
+// 	console.log('imgData', imgData);
+// 	imgData = '\\x' + imgData;
+// 	client.query('INSERT INTO users (psid,image) VALUES ($1,$2)\n' +
+// 		'ON CONFLICT (psid) \n' +
+// 		'DO\n' +
+// 		'UPDATE\n' +
+// 		'SET image = EXCLUDED.image;\n',
+// 		[1835204416586027, imgData],
+// 		function (err, writeResult) {
+// 			console.log('err', err);
+// 		});
+// });
+//
+// client.query("SELECT image FROM users WHERE psid='1835204416586027'")
+// 	.then(res => {
+// 		console.log('pg readResult', res.rows[0].image);
+// 		fs.writeFile('./foo.jpg', res.rows[0].image, err => console.log(err));
+// 	})
+// 	.catch(err => console.log(err))
+// ;
 
 //TMS
 
