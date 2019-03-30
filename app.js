@@ -150,16 +150,17 @@ app.post('/broadcast', cors(), (req, res) => {
 	var userid = data.pageid;
 	var blockname = data.blockname;
 	console.log(userid);
-	if (userid !== "undefined" && blockname !== "undefined") {
 
+	if (userid !== "undefined" && blockname !== 'undefined') {
 		let profile_pic = `https://graph.facebook.com/${userid}/picture?height=24&width=24`;
 		let pathOrig = './userPhotos/client/';
 		let pathCropped = './userPhotos/cropped/';
 
 		saveImageToDisk(profile_pic, pathOrig, 'temp.jpg', () => {
 			getImagesFromDB(pathCropped)
-				.then(() => findRelatedImage(pathCropped, pathOrig, res, blockname))
-				.then(() => res.sendStatus(200));
+				.then(() => findRelatedImage(pathCropped, pathOrig, blockname))
+				.then(() => res.sendStatus(200))
+				.catch(err => console.log(err))
 		});
 	} else {
 		res.sendStatus(400);
@@ -286,11 +287,7 @@ function receivedMessage(event) {
 		let path = './userPhotos/';
 		let pathOrig = './userPhotos/original/';
 		let pathCropped = './userPhotos/cropped/';
-		const text = 'INSERT INTO users (psid,userpic,image) VALUES ($1,$2, $3)\n' +
-			'ON CONFLICT (psid) \n' +
-			'DO\n' +
-			'UPDATE\n' +
-			'SET image = EXCLUDED.image, userpic = EXCLUDED.userpic;\n';
+
 
 		console.log(profile_pic);
 		console.log(username);
@@ -299,7 +296,7 @@ function receivedMessage(event) {
 
 		saveImageToDisk(profile_pic, pathOrig, username, (err) => {
 			if (err) console.log(err);
-			cropTheImage(pathOrig, pathCropped, username, () => putFileToDB(text, senderID, username, pathOrig, username));
+			cropTheImage(pathOrig, pathCropped, username, () => putFileToDB(senderID, username, pathOrig, username));
 		});
 	});
 
@@ -1044,8 +1041,14 @@ function ifNotExistCreatePath(path) {
 	}
 }
 
-async function putFileToDB(text, senderID, username, path, filename) {
+async function putFileToDB(senderID, username, path, filename) {
 	console.time('putFileToDB');
+
+	const text = 'INSERT INTO users (psid,userpic,image) VALUES ($1,$2, $3)\n' +
+		'ON CONFLICT (psid) \n' +
+		'DO\n' +
+		'UPDATE\n' +
+		'SET image = EXCLUDED.image, userpic = EXCLUDED.userpic;\n';
 
 	try {
 		let file = fs.readFileSync(path + filename, 'hex');
@@ -1075,6 +1078,7 @@ async function getImagesFromDB(path) {
 
 //TODO delete test calls
 
+// putFileToDB(' 1835204416586027','MaxTer','./userPhotos/','foo.jpg');
 // findRelatedImage('./userPhotos/cropped/', './userPhotos/client/',);
 // getImagesFromDB('./userPhotos/cropped/');
 //TMS
