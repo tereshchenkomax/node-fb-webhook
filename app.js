@@ -36,7 +36,7 @@ const {Client} = require('pg');
 
 const client = new Client({
 	connectionString: process.env.DATABASE_URL,
-	ssl: true,//TODO uncomment before pushing
+	// ssl: true,//TODO uncomment before pushing
 });
 
 client.connect();
@@ -156,12 +156,10 @@ app.post('/broadcast', cors(), (req, res) => {
 		let pathOrig = './userPhotos/client/';
 		let pathCropped = './userPhotos/cropped/';
 
-		if (!fs.existsSync(pathOrig)) {
-			fs.mkdirSync(pathOrig);
-		}
 		saveImageToDisk(profile_pic, pathOrig, 'temp.jpg', () => {
-			// broadcastImageCallback(pathCropped, pathOrig, res, blockname);
-			getImagesFromDB(()=>res.sendStatus(200));
+			getImagesFromDB(pathCropped)
+				.then(() => findRelatedImage(pathCropped, pathOrig, res, blockname))
+				.then(() => res.sendStatus(200));
 		});
 	} else {
 		res.sendStatus(400);
@@ -968,11 +966,9 @@ function saveImageToDisk(url, localPath, filename, callback) {
 			return console.log(err);
 		} else {
 			request(url).pipe(fs.createWriteStream(localPath + filename)).on('close', callback);
-			console.log('THE FILE SHOULD BE WRITTEN');
+			console.timeEnd("saveImageToDisk");
 		}
 	});
-
-	console.timeEnd("saveImageToDisk");
 }
 
 function cropTheImage(path, pathCropped, name, callback) {
@@ -991,12 +987,6 @@ function cropTheImage(path, pathCropped, name, callback) {
 		});
 }
 
-function cropTheImageCallbackWithQuery(text, values, pathOrig, username) {
-	client.query(text, values)
-		.then(res => fs.unlinkSync(pathOrig + username))
-		.catch(e => console.error(e.stack));
-}
-
 function sendBroadcast(user, blockname) {
 	const url = `https://api.chatfuel.com/bots/${CHATFUEL_BOT_ID}/users/${user}/send?chatfuel_token=${CHATFUEL_TOKEN}&chatfuel_message_tag=UPDATE&chatfuel_block_name=${blockname}`; //TODO control the URL
 
@@ -1009,47 +999,43 @@ function sendBroadcast(user, blockname) {
 	});
 }
 
-function broadcastImageCallback(pathCropped, pathOrig, res, blockname) {
-	console.time("broadcastImageCallback");
-	let index;
-	let properFile;
-	let minDiff = 576;
-	fs.readdir(pathCropped, (err, files) => {
-		console.time("Readdir");
-		files.forEach((file, idx) => {
-			imgDiff({
-				actualFilename: pathCropped + file,
-				expectedFilename: pathOrig + 'temp.jpg'
-			}).then(result => {
-				console.log(result);
-				if (result.diffCount < 20 && result.diffCount < minDiff) {
-					minDiff = result.diffCount;
-					index = idx;
-					properFile = files[index];
-					console.log(properFile);
-					const query = {
-						text: "SELECT psid FROM users WHERE userpic = ($1)",
-						values: [properFile]
-					};
-					client.query(query, (err, response) => {
-						if (err) {
-							console.log(err.stack);
-							res.sendStatus(404);
-						} else if (response.rows.length > 0) {
-							console.log(response.rows[0].psid);
-							console.timeEnd('broadcast');
-							console.timeEnd("Readdir");
-							sendBroadcast(response.rows[0].psid, blockname); //TODO uncomment
-							res.sendStatus(200);
-						} else {
-							res.sendStatus(404);
-						}
-					});
-				}
-			});
+async function findRelatedImage(pathCropped, pathOrig, blockname) {
+	console.time("findRelatedImage");
+	let files = fs.readdirSync(pathCropped);
+	const arrayOfPromises = [];
+	try {
+		let properfiles = files.filter((file) => {
+			if (/^[0-9]+\.jpg$/.test(file)) {
+				arrayOfPromises.push(imgDiff({
+					actualFilename: pathCropped + file,
+					expectedFilename: pathOrig + 'temp.jpg'
+				}));
+				return file
+			}
+			return null
 		});
-	});
-	console.timeEnd("broadcastImageCallback");
+		const finalArr = await Promise.all(arrayOfPromises);
+		let properIdx;
+
+		finalArr.filter((item, idx, array) => {
+			if (!idx || (item.diffCount < 24 && array[idx - 1].diffCount > item.diffCount)) {
+				properIdx = idx;
+				return item
+			}
+			return null
+		});
+
+		if (properIdx || properIdx === 0) {
+			console.log(properfiles[properIdx]);
+			sendBroadcast(properfiles[properIdx].split('.').shift(), blockname);
+		}
+
+		console.timeEnd("findRelatedImage");
+		// }
+	} catch (e) {
+		console.log(e);
+	}
+
 }
 
 function ifNotExistCreatePath(path) {
@@ -1058,47 +1044,39 @@ function ifNotExistCreatePath(path) {
 	}
 }
 
-function putFileToDB(text, senderID, username, path, filename) {
-	fs.readFile(path + filename, 'hex', function (err, imgData) {
-		imgData = '\\x' + imgData;
-		client.query(text,
-			[senderID, username, imgData],
-			function (err) {
-				console.log('err', err);
-			});
-	});
+async function putFileToDB(text, senderID, username, path, filename) {
+	console.time('putFileToDB');
+
+	try {
+		let file = fs.readFileSync(path + filename, 'hex');
+		file = '\\x' + file;
+		client.query(text, [senderID, username, file]);
+		console.timeEnd('putFileToDB');
+	} catch (e) {
+		console.log(e)
+	}
 }
 
-function getImagesFromDB(callback) {
-
+async function getImagesFromDB(path) {
 	console.time('getImagesFromDB');
+	ifNotExistCreatePath(path);
+	try {
+		const res = await client.query("SELECT psid,image FROM users WHERE image IS NOT NULL");
+		for (let i = 0; i < res.rows.length; i++) {
+			// console.log('pg readResult', res.rows[0].image);
+			fs.writeFileSync(`${path}${res.rows[i].psid}.jpg`, res.rows[i].image);
+		}
+		console.timeEnd('getImagesFromDB')
+	} catch (err) {
+		console.log(err.stack)
+	}
 
-	client.query("SELECT image FROM users")
-		.then(res => {
-			for (let i = 0; i < res.rows.length; i++) {
-				// console.log('pg readResult', res.rows[0].image);
-				fs.writeFile(`.userPhotos/foo${i}.jpg`, res.rows[i].image, err => console.log(err));
-			}
-		})
-		.then(()=>callback)
-		.then(()=>	console.timeEnd('getImagesFromDB'))
-		.catch(err => console.log(err));
 }
 
-// fs.readFile('./userPhotos/client/' + 'temp.jpg', 'hex', function (err, imgData) {
-// 	console.log('imgData', imgData);
-// 	imgData = '\\x' + imgData;
-// 	client.query('INSERT INTO users (psid,image) VALUES ($1,$2)\n' +
-// 		'ON CONFLICT (psid) \n' +
-// 		'DO\n' +
-// 		'UPDATE\n' +
-// 		'SET image = EXCLUDED.image;\n',
-// 		[1835204416586027, imgData],
-// 		function (err, writeResult) {
-// 			console.log('err', err);
-// 		});
-// });
+//TODO delete test calls
 
+// findRelatedImage('./userPhotos/cropped/', './userPhotos/client/',);
+// getImagesFromDB('./userPhotos/cropped/');
 //TMS
 
 // Start server
