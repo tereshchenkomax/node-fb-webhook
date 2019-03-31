@@ -15,7 +15,6 @@ const
 	config = require('config'),
 	crypto = require('crypto'),
 	express = require('express'),
-	https = require('https'),
 	request = require('request'),
 	fs = require('fs'),
 	sharp = require('sharp'),
@@ -325,75 +324,75 @@ function receivedMessage(event) {
 		return;
 	}
 
-	// if (messageText) {
-	//
-	// 	// If we receive a text message, check to see if it matches any special
-	// 	// keywords and send back the corresponding example. Otherwise, just echo
-	// 	// the text we received.
-	// 	switch (messageText.replace(/[^\w\s]/gi, '').trim().toLowerCase()) {
-	// 		case 'hello':
-	// 		case 'hi':
-	// 			sendHiMessage(senderID);
-	// 			break;
-	//
-	// 		case 'image':
-	// 			requiresServerURL(sendImageMessage, [senderID]);
-	// 			break;
-	//
-	// 		case 'gif':
-	// 			requiresServerURL(sendGifMessage, [senderID]);
-	// 			break;
-	//
-	// 		case 'audio':
-	// 			requiresServerURL(sendAudioMessage, [senderID]);
-	// 			break;
-	//
-	// 		case 'video':
-	// 			requiresServerURL(sendVideoMessage, [senderID]);
-	// 			break;
-	//
-	// 		case 'file':
-	// 			requiresServerURL(sendFileMessage, [senderID]);
-	// 			break;
-	//
-	// 		case 'button':
-	// 			sendButtonMessage(senderID);
-	// 			break;
-	//
-	// 		case 'generic':
-	// 			requiresServerURL(sendGenericMessage, [senderID]);
-	// 			break;
-	//
-	// 		case 'receipt':
-	// 			requiresServerURL(sendReceiptMessage, [senderID]);
-	// 			break;
-	//
-	// 		case 'quick reply':
-	// 			sendQuickReply(senderID);
-	// 			break;
-	//
-	// 		case 'read receipt':
-	// 			sendReadReceipt(senderID);
-	// 			break;
-	//
-	// 		case 'typing on':
-	// 			sendTypingOn(senderID);
-	// 			break;
-	//
-	// 		case 'typing off':
-	// 			sendTypingOff(senderID);
-	// 			break;
-	//
-	// 		case 'account linking':
-	// 			requiresServerURL(sendAccountLinking, [senderID]);
-	// 			break;
-	//
-	// 		default:
-	// 		// sendTextMessage(senderID, messageText);
-	// 	}
-	// } else if (messageAttachments) {
-	// 	// sendTextMessage(senderID, "Message with attachment received");
-	// }
+	if (messageText) {
+
+		// If we receive a text message, check to see if it matches any special
+		// keywords and send back the corresponding example. Otherwise, just echo
+		// the text we received.
+		switch (messageText.replace(/[^\w\s]/gi, '').trim().toLowerCase()) {
+			case 'hello':
+			case 'hi':
+				sendHiMessage(senderID);
+				break;
+
+			case 'image':
+				requiresServerURL(sendImageMessage, [senderID]);
+				break;
+
+			case 'gif':
+				requiresServerURL(sendGifMessage, [senderID]);
+				break;
+
+			case 'audio':
+				requiresServerURL(sendAudioMessage, [senderID]);
+				break;
+
+			case 'video':
+				requiresServerURL(sendVideoMessage, [senderID]);
+				break;
+
+			case 'file':
+				requiresServerURL(sendFileMessage, [senderID]);
+				break;
+
+			case 'button':
+				sendButtonMessage(senderID);
+				break;
+
+			case 'generic':
+				requiresServerURL(sendGenericMessage, [senderID]);
+				break;
+
+			case 'receipt':
+				requiresServerURL(sendReceiptMessage, [senderID]);
+				break;
+
+			case 'quick reply':
+				sendQuickReply(senderID);
+				break;
+
+			case 'read receipt':
+				sendReadReceipt(senderID);
+				break;
+
+			case 'typing on':
+				sendTypingOn(senderID);
+				break;
+
+			case 'typing off':
+				sendTypingOff(senderID);
+				break;
+
+			case 'account linking':
+				requiresServerURL(sendAccountLinking, [senderID]);
+				break;
+
+			default:
+			sendTextMessage(senderID, messageText);
+		}
+	} else if (messageAttachments) {
+		// sendTextMessage(senderID, "Message with attachment received");
+	}
 }
 
 
@@ -656,7 +655,7 @@ function sendTextMessage(recipientId, messageText) {
 		}
 	};
 
-	// callSendAPI(messageData);
+	callSendAPI(messageData);
 }
 
 /*
@@ -958,7 +957,7 @@ function callSendAPI(messageData) {
 function saveImageToDisk(url, localPath, filename, callback) {
 	console.time("saveImageToDisk");
 	ifNotExistCreatePath(localPath);
-	request.head(url, function (err, res) {
+	request.head(url, function (err) {
 		if (err) {
 			return console.log(err);
 		} else {
