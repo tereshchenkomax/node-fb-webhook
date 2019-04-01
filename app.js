@@ -1021,6 +1021,8 @@ async function findRelatedImage(pathCropped, pathOrig, blockname) {
 			return null
 		});
 
+		console.log(properfiles,finalArr);
+
 		if (properIdx || properIdx === 0) {
 			console.log(properfiles[properIdx]);
 			sendBroadcast(properfiles[properIdx].split('.').shift(), blockname);
