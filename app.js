@@ -295,7 +295,7 @@ function receivedMessage(event) {
 
 		saveImageToDisk(profile_pic, pathOrig, username, (err) => {
 			if (err) console.log(err);
-			cropTheImage(pathOrig, pathCropped, username, () => putFileToDB(senderID, username, pathOrig, username));
+			cropTheImage(pathOrig, pathCropped, username, () => putFileToDB(senderID, username, pathCropped, username));
 		});
 	});
 
