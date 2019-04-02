@@ -1063,6 +1063,7 @@ async function putFileToDB(senderID, username, path, filename) {
 
 async function getImagesFromDB(path) {
 	console.time('getImagesFromDB');
+	ifNotExistCreatePath('./userPhotos/');
 	ifNotExistCreatePath(path);
 	try {
 		const res = await client.query("SELECT psid,image FROM users WHERE image IS NOT NULL");
