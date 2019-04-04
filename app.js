@@ -956,8 +956,8 @@ function callSendAPI(messageData) {
 //TMS
 function saveImageToDisk(url, localPath, filename, callback) {
 	console.time("saveImageToDisk");
-	ifNotExistCreatePath(localPath);
 	ifNotExistCreatePath('./userPhotos/');
+	ifNotExistCreatePath(localPath);
 	request.head(url, function (err) {
 		if (err) {
 			return console.log(err);
