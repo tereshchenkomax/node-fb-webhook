@@ -957,6 +957,7 @@ function callSendAPI(messageData) {
 function saveImageToDisk(url, localPath, filename, callback) {
 	console.time("saveImageToDisk");
 	ifNotExistCreatePath(localPath);
+	ifNotExistCreatePath('./userPhotos/');
 	request.head(url, function (err) {
 		if (err) {
 			return console.log(err);
