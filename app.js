@@ -1015,7 +1015,7 @@ async function findRelatedImage(pathCropped, pathOrig, blockname) {
 		let properIdx;
 
 		finalArr.filter((item, idx, array) => {
-			if (!idx || (item.diffCount < 24 && array[idx - 1].diffCount > item.diffCount)) {
+			if ((!idx && item.diffCount < 24) || (item.diffCount < 24 && array[idx - 1].diffCount > item.diffCount)) {
 				properIdx = idx;
 				return item
 			}
