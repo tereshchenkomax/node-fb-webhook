@@ -6,7 +6,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="aeed00b0-0ce4-4f6d-b3f8-3e594429ca7b" name="Default Changelist" comment="Before the rebasing the project locally">
-      <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -18,18 +18,27 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file pinned="false" current-in-tab="true">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="234">
-              <caret line="1017" column="69" selection-start-line="1017" selection-start-column="69" selection-end-line="1017" selection-end-column="69" />
+            <state relative-caret-position="15090">
+              <caret line="1019" column="27" selection-start-line="1019" selection-start-column="27" selection-end-line="1019" selection-end-column="27" />
               <folding>
                 <element signature="e#202#238#0" />
                 <element signature="e#567#597#0" />
                 <element signature="e#603#744#0" />
                 <element signature="e#606#650#0" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/scratch.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret selection-end-column="64" />
             </state>
           </provider>
         </entry>
@@ -84,7 +93,6 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/Procfile" />
-        <option value="$APPLICATION_CONFIG_DIR$/scratches/scratch.txt" />
         <option value="$PROJECT_DIR$/puppeteer.js" />
         <option value="$PROJECT_DIR$/puppeteerScript.js" />
         <option value="$PROJECT_DIR$/config/default.json" />
@@ -96,6 +104,7 @@
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/.eslintrc.json" />
         <option value="$PROJECT_DIR$/app.js" />
+        <option value="$APPLICATION_CONFIG_DIR$/scratches/scratch.txt" />
       </list>
     </option>
   </component>
@@ -109,18 +118,18 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
-              <item name="node" type="b2602c69:ProjectViewProjectNode" />
-              <item name="node" type="462c0819:PsiDirectoryNode" />
+              <item name="Heroku-webhook-stage" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Heroku-webhook-stage" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -138,7 +147,7 @@
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="restartRequiresConfirmation" value="false" />
-    <property name="settings.editor.selected.configurable" value="settings.javascript.linters.eslint" />
+    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -259,12 +268,19 @@
       <workItem from="1558006802232" duration="460000" />
       <workItem from="1558020847483" duration="1554000" />
       <workItem from="1558101510729" duration="828000" />
-      <workItem from="1558166588809" duration="2717000" />
+      <workItem from="1558166588809" duration="2937000" />
+      <workItem from="1558506886667" duration="380000" />
+      <workItem from="1558538239601" duration="135000" />
+      <workItem from="1558635341528" duration="1278000" />
+      <workItem from="1558686552865" duration="2580000" />
+      <workItem from="1558727436698" duration="425000" />
+      <workItem from="1558791134063" duration="4000" />
+      <workItem from="1558791178346" duration="38000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="205337000" />
+    <option name="totallyTimeSpent" value="210397000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -277,9 +293,8 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
-    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49910232" visible="true" weight="0.20930232" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49910232" visible="true" weight="0.23537703" />
       <window_info id="Structure" order="1" sideWeight="0.50089765" side_tool="true" weight="0.24947146" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -293,7 +308,7 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.32891566" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5010571" side_tool="true" weight="0.32168674" />
-      <window_info active="true" anchor="bottom" x="-517" y="-690" width="1899" height="300" id="Terminal" order="10" sideWeight="0.4989429" visible="true" weight="0.33493975" />
+      <window_info active="true" anchor="bottom" x="-517" y="-690" width="1899" height="300" id="Terminal" order="10" sideWeight="0.4989429" visible="true" weight="0.38072288" />
       <window_info anchor="bottom" id="Messages" order="11" weight="0.32891566" />
       <window_info anchor="bottom" id="V8 CPU Profiling" order="12" weight="0.5019802" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -345,6 +360,9 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+    <ignored-roots>
+      <path value="$PROJECT_DIR$/.." />
+    </ignored-roots>
     <MESSAGE value="Before the rebasing the project locally" />
     <option name="LAST_COMMIT_MESSAGE" value="Before the rebasing the project locally" />
   </component>
@@ -499,14 +517,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="1017" column="69" selection-start-line="1017" selection-start-column="69" selection-end-line="1017" selection-end-column="69" />
+        <state relative-caret-position="15090">
+          <caret line="1019" column="27" selection-start-line="1019" selection-start-column="27" selection-end-line="1019" selection-end-column="27" />
           <folding>
             <element signature="e#202#238#0" />
             <element signature="e#567#597#0" />
             <element signature="e#603#744#0" />
             <element signature="e#606#650#0" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/scratch.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-column="64" />
         </state>
       </provider>
     </entry>
