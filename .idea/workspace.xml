@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/app.js" line="145" mnemonic="1" />
-    <bookmark url="file://$PROJECT_DIR$/app.js" line="265" mnemonic="3" />
+    <bookmark url="file://$PROJECT_DIR$/app.js" line="139" mnemonic="1" />
+    <bookmark url="file://$PROJECT_DIR$/app.js" line="298" mnemonic="3" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="aeed00b0-0ce4-4f6d-b3f8-3e594429ca7b" name="Default Changelist" comment="Before the rebasing the project locally">
-      <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -18,17 +18,39 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="234">
-              <caret line="1017" column="69" selection-start-line="1017" selection-start-column="69" selection-end-line="1017" selection-end-column="69" />
+            <state relative-caret-position="581">
+              <caret line="1183" selection-start-line="1183" selection-end-line="1183" />
               <folding>
                 <element signature="e#202#238#0" />
-                <element signature="e#567#597#0" />
-                <element signature="e#603#744#0" />
-                <element signature="e#606#650#0" />
+                <element signature="e#688#779#0" />
+                <element signature="e#1605#1685#0" />
+                <element signature="e#1896#1958#0" />
+                <element signature="e#2166#2288#0" />
+                <element signature="e#2329#2637#0" />
+                <element signature="e#2431#2524#0" />
+                <element signature="e#2530#2635#0" />
+                <element signature="e#2642#2915#0" />
+                <element signature="e#2957#4155#0" />
+                <element signature="e#3052#4153#0" />
+                <element signature="e#3056#3082#0" />
+                <element signature="e#3163#3941#0" />
+                <element signature="e#3330#3935#0" />
+                <element signature="e#3362#3414#0" />
+                <element signature="e#3448#3493#0" />
+                <element signature="e#3528#3586#0" />
+                <element signature="e#3621#3667#0" />
+                <element signature="e#3698#3747#0" />
+                <element signature="e#3789#3838#0" />
+                <element signature="e#3844#3930#0" />
+                <element signature="e#3947#3971#0" />
+                <element signature="e#4369#4948#0" />
+                <element signature="e#4800#4896#0" />
+                <element signature="e#4915#4943#0" />
+                <element signature="e#4954#4981#0" />
               </folding>
             </state>
           </provider>
@@ -84,17 +106,17 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/Procfile" />
-        <option value="$APPLICATION_CONFIG_DIR$/scratches/scratch.txt" />
         <option value="$PROJECT_DIR$/puppeteer.js" />
         <option value="$PROJECT_DIR$/puppeteerScript.js" />
         <option value="$PROJECT_DIR$/config/default.json" />
         <option value="$PROJECT_DIR$/.env" />
-        <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/psid.js" />
         <option value="$PROJECT_DIR$/.jshintrc" />
         <option value="$PROJECT_DIR$/public/index.html" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/.eslintrc.json" />
+        <option value="$APPLICATION_CONFIG_DIR$/scratches/scratch.txt" />
+        <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/app.js" />
       </list>
     </option>
@@ -109,7 +131,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -117,10 +138,20 @@
               <item name="node" type="b2602c69:ProjectViewProjectNode" />
               <item name="node" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="node" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Scratches and Consoles" type="1a2a3e82:ScratchProjectViewPane$MyProjectNode" />
+            </path>
+            <path>
+              <item name="node" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Scratches and Consoles" type="1a2a3e82:ScratchProjectViewPane$MyProjectNode" />
+              <item name="Scratches" type="d62648e6:ScratchProjectViewPane$MyRootNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -259,12 +290,42 @@
       <workItem from="1558006802232" duration="460000" />
       <workItem from="1558020847483" duration="1554000" />
       <workItem from="1558101510729" duration="828000" />
-      <workItem from="1558166588809" duration="2717000" />
+      <workItem from="1558166588809" duration="2937000" />
+      <workItem from="1558506886667" duration="380000" />
+      <workItem from="1558538239601" duration="135000" />
+      <workItem from="1558635341528" duration="1278000" />
+      <workItem from="1558686552865" duration="2580000" />
+      <workItem from="1558727436698" duration="482000" />
+      <workItem from="1558791177323" duration="11000" />
+      <workItem from="1558961503258" duration="304000" />
+      <workItem from="1558964168893" duration="872000" />
+      <workItem from="1558965201069" duration="84000" />
+      <workItem from="1558965526449" duration="85000" />
+      <workItem from="1558985751740" duration="17000" />
+      <workItem from="1559030057640" duration="11000" />
+      <workItem from="1559651477932" duration="47000" />
+      <workItem from="1559747922274" duration="742000" />
+      <workItem from="1559896272383" duration="13000" />
+      <workItem from="1559896311622" duration="40000" />
+      <workItem from="1559897533248" duration="1200000" />
+      <workItem from="1560258728528" duration="580000" />
+      <workItem from="1560329390139" duration="145000" />
+      <workItem from="1560701794700" duration="608000" />
+      <workItem from="1561550892952" duration="107000" />
+      <workItem from="1561571302936" duration="243000" />
     </task>
+    <task id="LOCAL-00001" summary="Before the rebasing the project locally">
+      <created>1561571456708</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1561571456708</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="205337000" />
+    <option name="totallyTimeSpent" value="215521000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -279,7 +340,7 @@
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49910232" visible="true" weight="0.20930232" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49910232" visible="true" weight="0.23537703" />
       <window_info id="Structure" order="1" sideWeight="0.50089765" side_tool="true" weight="0.24947146" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -292,8 +353,8 @@
       <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.49964765" weight="0.32650602" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.32891566" />
-      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5010571" side_tool="true" weight="0.32168674" />
-      <window_info active="true" anchor="bottom" x="-517" y="-690" width="1899" height="300" id="Terminal" order="10" sideWeight="0.4989429" visible="true" weight="0.33493975" />
+      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5017618" side_tool="true" weight="0.38072288" />
+      <window_info anchor="bottom" x="-517" y="-690" width="1899" height="300" id="Terminal" order="10" sideWeight="0.4982382" visible="true" weight="0.20361446" />
       <window_info anchor="bottom" id="Messages" order="11" weight="0.32891566" />
       <window_info anchor="bottom" id="V8 CPU Profiling" order="12" weight="0.5019802" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -349,38 +410,9 @@
     <option name="LAST_COMMIT_MESSAGE" value="Before the rebasing the project locally" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/example.png" />
-    <entry file="file://$PROJECT_DIR$/node_modules/psid-to-fbid/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="406">
-          <caret line="176" column="53" selection-start-line="176" selection-start-column="53" selection-end-line="176" selection-end-column="53" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/iOS token.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="247" selection-start-line="4" selection-end-line="4" selection-end-column="247" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/userPhotos/cropped/placeimg_24_24_people (7).jpg" />
     <entry file="file://$PROJECT_DIR$/userPhotos/cropped/placeimg_24_24_people (77).jpg" />
     <entry file="file://$PROJECT_DIR$/userPhotos/cropped/placeimg_24_24_people(6).jpg" />
-    <entry file="file://$PROJECT_DIR$/.env">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="1" column="14" selection-start-line="1" selection-start-column="14" selection-end-line="1" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Procfile">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="10" selection-start-column="10" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/node_modules/sharp/lib/resize.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-3967" />
@@ -398,30 +430,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="159">
           <caret line="715" column="4" selection-start-line="715" selection-start-column="4" selection-end-line="715" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/puppeteerScript.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="18" lean-forward="true" selection-start-line="18" selection-end-line="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/package.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="20" selection-start-line="20" selection-end-line="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/psid.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="15" column="9" selection-start-line="15" selection-start-column="9" selection-end-line="15" selection-end-column="9" />
-          <folding>
-            <element signature="e#42#205#0" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -467,19 +475,40 @@
     <entry file="file://$PROJECT_DIR$/public/index.html">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="1" column="5" selection-start-line="1" selection-start-column="5" selection-end-line="1" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/userPhotos/client/temp.jpg" />
     <entry file="file://$PROJECT_DIR$/userPhotos/cropped/213213133.jpg" />
     <entry file="file://$PROJECT_DIR$/node_modules/jpeg-js/lib/decoder.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="7691">
           <caret line="597" selection-start-line="597" selection-end-line="597" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/package-lock.json">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/scratch.txt" />
+    <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/scratch.json">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/default.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" selection-start-line="8" selection-end-line="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="22" column="16" selection-start-line="22" selection-start-column="5" selection-end-line="22" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.env">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" column="14" selection-start-line="1" selection-start-column="14" selection-end-line="1" selection-end-column="14" />
         </state>
       </provider>
     </entry>
@@ -490,22 +519,75 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/config/default.json">
+    <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" selection-start-line="8" selection-end-line="8" />
+        <state relative-caret-position="15">
+          <caret line="1" column="5" selection-start-line="1" selection-start-column="5" selection-end-line="1" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Procfile">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="10" selection-start-column="10" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/puppeteerScript.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="18" lean-forward="true" selection-start-line="18" selection-end-line="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/psid.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="15" column="9" selection-start-line="15" selection-start-column="9" selection-end-line="15" selection-end-column="9" />
+          <folding>
+            <element signature="e#42#205#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/Database.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" selection-start-line="2" selection-end-line="2" selection-end-column="56" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="1017" column="69" selection-start-line="1017" selection-start-column="69" selection-end-line="1017" selection-end-column="69" />
+        <state relative-caret-position="581">
+          <caret line="1183" selection-start-line="1183" selection-end-line="1183" />
           <folding>
             <element signature="e#202#238#0" />
-            <element signature="e#567#597#0" />
-            <element signature="e#603#744#0" />
-            <element signature="e#606#650#0" />
+            <element signature="e#688#779#0" />
+            <element signature="e#1605#1685#0" />
+            <element signature="e#1896#1958#0" />
+            <element signature="e#2166#2288#0" />
+            <element signature="e#2329#2637#0" />
+            <element signature="e#2431#2524#0" />
+            <element signature="e#2530#2635#0" />
+            <element signature="e#2642#2915#0" />
+            <element signature="e#2957#4155#0" />
+            <element signature="e#3052#4153#0" />
+            <element signature="e#3056#3082#0" />
+            <element signature="e#3163#3941#0" />
+            <element signature="e#3330#3935#0" />
+            <element signature="e#3362#3414#0" />
+            <element signature="e#3448#3493#0" />
+            <element signature="e#3528#3586#0" />
+            <element signature="e#3621#3667#0" />
+            <element signature="e#3698#3747#0" />
+            <element signature="e#3789#3838#0" />
+            <element signature="e#3844#3930#0" />
+            <element signature="e#3947#3971#0" />
+            <element signature="e#4369#4948#0" />
+            <element signature="e#4800#4896#0" />
+            <element signature="e#4915#4943#0" />
+            <element signature="e#4954#4981#0" />
           </folding>
         </state>
       </provider>
