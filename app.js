@@ -21,15 +21,9 @@ const
 	{imgDiff} = require('img-diff-js'),
 	cors = require('cors');
 
-if (process.env.NODE_ENV === 'stage') {
-	require('dotenv').load();
-} else {
-	// const pup = require('./puppeteerScript');
-	// console.log(pup);
-	// pup.puppeteerGetJSONfromPage(url).catch(err => console.log(err));
-}
+if (process.env.NODE_ENV !== 'prod') require('dotenv').load();
 
-// console.log(process.env.NODE_ENV);
+console.log(process.env.NODE_ENV);
 
 const {Client} = require('pg');
 
@@ -38,7 +32,7 @@ const client = new Client({
 	ssl: true,//TODO uncomment before pushing
 });
 
-client.connect();
+client.connect().catch(err => console.log(err));
 
 var app = express();
 app.set('port', process.env.PORT || 5000);
@@ -150,17 +144,56 @@ app.post('/broadcast', cors(), (req, res) => {
 	var blockname = data.blockname;
 	console.log(userid);
 
-	if (userid !== "undefined" && blockname !== 'undefined') {
+	if (!!userid && !!blockname) {
 		let profile_pic = `https://graph.facebook.com/${userid}/picture?height=24&width=24`;
 		let pathOrig = './userPhotos/client/';
 		let pathCropped = './userPhotos/cropped/';
 
-		saveImageToDisk(profile_pic, pathOrig, 'temp.jpg', () => {
-			getImagesFromDB(pathCropped)
-				.then(() => findRelatedImage(pathCropped, pathOrig, blockname))
-				.then(() => res.sendStatus(200))
-				.catch(err => console.log(err))
-		});
+		findPSID(userid,
+			() => saveImageToDisk(profile_pic, pathOrig, 'temp.jpg',
+				() => getImagesFromDB(pathCropped)
+					.then(() => findRelatedImage(pathCropped, pathOrig, blockname, userid))
+					.catch(err => console.log(err))
+			))
+			.then(psid => {
+				psid ? sendBroadcast(psid, blockname) : null//TODO uncomment
+				res.sendStatus(200);
+			})
+			.catch(err => {
+				console.log(err);
+			})
+
+	} else {
+		res.sendStatus(400);
+	}
+
+});
+
+app.post('/user', cors(), (req, res) => {
+	console.time("broadcast");
+	var data = req.body;
+	var userid = data.pageid;
+	console.log(userid);
+
+	if (userid) {
+		let profile_pic = `https://graph.facebook.com/${userid}/picture?height=24&width=24`;
+		let pathOrig = './userPhotos/client/';
+		let pathCropped = './userPhotos/cropped/';
+
+		findPSID(userid,
+			() => saveImageToDisk(profile_pic, pathOrig, 'temp.jpg',
+				() => getImagesFromDB(pathCropped)
+					.then(() => findRelatedImage(pathCropped, pathOrig, null, userid))
+					.catch(err => console.log(err))
+			))
+			.then(psid => {
+				console.log('psid: ', psid);
+				res.sendStatus(200);
+			})
+			.catch(err => {
+				console.log(err);
+			})
+
 	} else {
 		res.sendStatus(400);
 	}
@@ -207,7 +240,6 @@ function verifyRequestSignature(req, res, buf) {
 		console.error("Couldn't validate the signature.");
 	} else {
 		var elements = signature.split('=');
-		var method = elements[0];
 		var signatureHash = elements[1];
 
 		var expectedHash = crypto.createHmac('sha1', APP_SECRET)
@@ -215,6 +247,7 @@ function verifyRequestSignature(req, res, buf) {
 			.digest('hex');
 
 		if (signatureHash != expectedHash) {
+			console.log(signatureHash, expectedHash);
 			throw new Error("Couldn't validate the request signature.");
 		}
 	}
@@ -287,9 +320,7 @@ function receivedMessage(event) {
 		let pathOrig = './userPhotos/original/';
 		let pathCropped = './userPhotos/cropped/';
 
-
-		console.log(profile_pic);
-		console.log(username);
+		console.log(profile_pic, username);
 
 		ifNotExistCreatePath(path);
 
@@ -298,7 +329,6 @@ function receivedMessage(event) {
 			cropTheImage(pathOrig, pathCropped, username, () => putFileToDB(senderID, username, pathCropped, username));
 		});
 	});
-
 
 	var isEcho = message.is_echo;
 	var messageId = message.mid;
@@ -433,6 +463,7 @@ function receivedPostback(event) {
 	var senderID = event.sender.id;
 	var recipientID = event.recipient.id;
 	var timeOfPostback = event.timestamp;
+	let uri = `https://graph.facebook.com/v3.2/${senderID}?fields=first_name,last_name,profile_pic&access_token=${PAGE_ACCESS_TOKEN}`;
 
 	// The 'payload' param is a developer-defined field which is set in a postback
 	// button for Structured Messages.
@@ -440,6 +471,28 @@ function receivedPostback(event) {
 
 	console.log("Received postback for user %d and page %d with payload '%s' " +
 		"at %d", senderID, recipientID, payload, timeOfPostback);
+
+	//get an image and compress it
+	request.get(uri, (err, res) => {
+		if (err) {
+			return console.log(err);
+		}
+		console.time("getAndCompressImgFromWebhook");
+		let {profile_pic, first_name, last_name} = JSON.parse(res.body);
+		let username = first_name + last_name + senderID + '.jpg';
+		let path = './userPhotos/';
+		let pathOrig = './userPhotos/original/';
+		let pathCropped = './userPhotos/cropped/';
+
+		console.log(profile_pic, username);
+
+		ifNotExistCreatePath(path);
+
+		saveImageToDisk(profile_pic, pathOrig, username, (err) => {
+			if (err) console.log(err);
+			cropTheImage(pathOrig, pathCropped, username, () => putFileToDB(senderID, username, pathCropped, username));
+		});
+	});
 
 	// When a postback is called, we'll send a message back to the sender to
 	// let them know it was successful
@@ -953,7 +1006,8 @@ function callSendAPI(messageData) {
 	});
 }
 
-//TMS
+//TMS tereshchenkomax@gmail.com
+
 function saveImageToDisk(url, localPath, filename, callback) {
 	console.time("saveImageToDisk");
 	ifNotExistCreatePath('./userPhotos/');
@@ -962,7 +1016,11 @@ function saveImageToDisk(url, localPath, filename, callback) {
 		if (err) {
 			return console.log(err);
 		} else {
-			request(url).pipe(fs.createWriteStream(localPath + filename)).on('close', callback);
+			try {
+				request(url).pipe(fs.createWriteStream(localPath + filename)).on('close', callback);
+			} catch (e) {
+				console.log(e);
+			}
 			console.timeEnd("saveImageToDisk");
 		}
 	});
@@ -985,18 +1043,17 @@ function cropTheImage(path, pathCropped, name, callback) {
 }
 
 function sendBroadcast(user, blockname) {
-	const url = `https://api.chatfuel.com/bots/${CHATFUEL_BOT_ID}/users/${user}/send?chatfuel_token=${CHATFUEL_TOKEN}&chatfuel_message_tag=UPDATE&chatfuel_block_name=${blockname}`; //TODO control the URL
+	const url = `https://api.chatfuel.com/bots/${CHATFUEL_BOT_ID}/users/${user}/send?chatfuel_token=${CHATFUEL_TOKEN}&chatfuel_message_tag=UPDATE&chatfuel_block_name=${blockname}`;
 
 	request.post(url, {json: true}, (err, res) => {
 		if (err) {
 			return console.log(err);
 		}
-		console.log(res.body);
 		console.log(`the broadcast for ${user} and ${blockname} was succesfully sent`);
 	});
 }
 
-async function findRelatedImage(pathCropped, pathOrig, blockname) {
+async function findRelatedImage(pathCropped, pathOrig, blockname, userid) {
 	console.time("findRelatedImage");
 	let files = fs.readdirSync(pathCropped);
 	const arrayOfPromises = [];
@@ -1022,11 +1079,13 @@ async function findRelatedImage(pathCropped, pathOrig, blockname) {
 			return null
 		});
 
-		console.log(properfiles,finalArr);
-
 		if (properIdx || properIdx === 0) {
 			console.log(properfiles[properIdx]);
-			sendBroadcast(properfiles[properIdx].split('.').shift(), blockname);
+
+			insertUserIDtoDB(userid, properfiles[properIdx]);
+			if (blockname){
+				sendBroadcast(properfiles[properIdx].split('.').shift(), blockname);//TODO uncomment
+			}
 		}
 
 		console.timeEnd("findRelatedImage");
@@ -1062,6 +1121,23 @@ async function putFileToDB(senderID, username, path, filename) {
 	}
 }
 
+function insertUserIDtoDB(userID, PSIDphoto) {
+	console.log(userID, PSIDphoto);
+	console.time('insertUserIDtoDB');
+	let PSID = PSIDphoto.match(/\d+/)[0];
+	console.log('psid trimmed', PSID);
+	const text = `INSERT INTO users (psid,userid) VALUES ($1, $2)\n` +
+		'ON CONFLICT (psid) \n' +
+		'DO UPDATE\n' +
+		'SET userid = EXCLUDED.userid;\n';
+	try {
+		client.query(text, [PSID, userID]).catch(e => console.log(e));
+		console.timeEnd('insertUserIDtoDB');
+	} catch (e) {
+		console.log(e)
+	}
+}
+
 async function getImagesFromDB(path) {
 	console.time('getImagesFromDB');
 	ifNotExistCreatePath('./userPhotos/');
@@ -1076,10 +1152,21 @@ async function getImagesFromDB(path) {
 	} catch (err) {
 		console.log(err.stack)
 	}
-
 }
 
-//TODO delete test calls
+async function findPSID(userid, queryNotSucessfullCB) {
+	console.time('findPSID');
+	try {
+		const res = await client.query(`SELECT psid FROM users WHERE userid=${userid}`);
+		return res.rows[0].psid
+	} catch (e) {
+		console.log(e);
+		queryNotSucessfullCB();
+	}
+	console.timeEnd('findPSID');
+}
+
+// test calls
 
 // putFileToDB(' 1835204416586027','MaxTer','./userPhotos/','foo.jpg');
 // findRelatedImage('./userPhotos/cropped/', './userPhotos/client/',);
