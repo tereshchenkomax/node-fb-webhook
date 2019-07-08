@@ -2,11 +2,12 @@
 <project version="4">
   <component name="BookmarkManager">
     <bookmark url="file://$PROJECT_DIR$/app.js" line="126" mnemonic="1" />
-    <bookmark url="file://$PROJECT_DIR$/app.js" line="280" mnemonic="3" />
+    <bookmark url="file://$PROJECT_DIR$/app.js" line="284" mnemonic="3" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="aeed00b0-0ce4-4f6d-b3f8-3e594429ca7b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -22,8 +23,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="234">
-              <caret line="293" column="36" selection-start-line="293" selection-start-column="36" selection-end-line="293" selection-end-column="36" />
+            <state relative-caret-position="74">
+              <caret line="1058" column="42" selection-start-line="1058" selection-start-column="31" selection-end-line="1058" selection-end-column="42" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
                 <element signature="e#202#238#0" />
@@ -34,9 +35,7 @@
                 <element signature="e#2339#2432#0" />
                 <element signature="e#2438#2543#0" />
                 <element signature="e#2549#2822#0" />
-                <element signature="e#3962#4694#0" />
                 <element signature="e#4664#4691#0" />
-                <element signature="e#4744#5405#0" />
                 <element signature="e#5409#5543#0" />
                 <element signature="e#5586#6123#0" />
                 <element signature="e#5693#5771#0" />
@@ -241,8 +240,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/package.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="480">
-              <caret line="32" column="23" selection-start-line="32" selection-start-column="23" selection-end-line="32" selection-end-column="23" />
+            <state relative-caret-position="205">
+              <caret line="23" column="9" selection-start-line="23" selection-start-column="9" selection-end-line="23" selection-end-column="9" />
             </state>
           </provider>
         </entry>
@@ -303,9 +302,9 @@
       <find>saveImageToDisk</find>
       <find>putFileToDB</find>
       <find>fs.readFile</find>
-      <find>getImagesFromDB</find>
       <find>graph</find>
       <find>`</find>
+      <find>getImagesFromDB</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -326,15 +325,15 @@
         <option value="$PROJECT_DIR$/.eslintrc.json" />
         <option value="$APPLICATION_CONFIG_DIR$/scratches/scratch.txt" />
         <option value="$APPLICATION_CONFIG_DIR$/scratches/Database.txt" />
-        <option value="$PROJECT_DIR$/app.js" />
         <option value="$PROJECT_DIR$/controllers/pg.js" />
         <option value="$PROJECT_DIR$/helpers/dbqueries.js" />
         <option value="$PROJECT_DIR$/jobs/databaseCron.js" />
         <option value="$PROJECT_DIR$/package.json" />
+        <option value="$PROJECT_DIR$/app.js" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" fullScreen="true">
+  <component name="ProjectFrameBounds" extendedState="6" fullScreen="true">
     <option name="width" value="1440" />
     <option name="height" value="900" />
   </component>
@@ -350,11 +349,6 @@
             <path>
               <item name="node" type="b2602c69:ProjectViewProjectNode" />
               <item name="node" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="node" type="b2602c69:ProjectViewProjectNode" />
-              <item name="node" type="462c0819:PsiDirectoryNode" />
-              <item name="config" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="node" type="b2602c69:ProjectViewProjectNode" />
@@ -541,7 +535,7 @@
       <workItem from="1562229778408" duration="404000" />
       <workItem from="1562233333363" duration="135000" />
       <workItem from="1562434733801" duration="240000" />
-      <workItem from="1562594275912" duration="239000" />
+      <workItem from="1562594275912" duration="1943000" />
     </task>
     <task id="LOCAL-00001" summary="Before the rebasing the project locally">
       <created>1561571456708</created>
@@ -564,11 +558,18 @@
       <option name="project" value="LOCAL" />
       <updated>1562099231674</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="user endpoint additional error handler v1">
+      <created>1562594824419</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1562594824419</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="223632000" />
+    <option name="totallyTimeSpent" value="225336000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -580,7 +581,8 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1440" height="900" extended-state="0" />
+    <frame x="0" y="0" width="1440" height="900" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49910232" visible="true" weight="0.23537703" />
       <window_info id="Structure" order="1" sideWeight="0.50089765" side_tool="true" weight="0.24947146" />
@@ -651,14 +653,10 @@
     <MESSAGE value="Before the rebasing the project locally" />
     <MESSAGE value="rolling back" />
     <MESSAGE value="speed opt is done" />
-    <option name="LAST_COMMIT_MESSAGE" value="speed opt is done" />
+    <MESSAGE value="user endpoint additional error handler v1" />
+    <option name="LAST_COMMIT_MESSAGE" value="user endpoint additional error handler v1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/node_modules/sharp/lib/resize.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3967" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/node_modules/sharp/lib/index.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
@@ -791,10 +789,43 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/helpers/dbqueries.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="9" selection-start-line="2" selection-start-column="9" selection-end-line="2" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/Database.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" selection-start-line="3" selection-end-line="3" selection-end-column="77" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" selection-start-line="6" selection-end-line="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/img-diff-js/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-412" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="205">
+          <caret line="23" column="9" selection-start-line="23" selection-start-column="9" selection-end-line="23" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="293" column="36" selection-start-line="293" selection-start-column="36" selection-end-line="293" selection-end-column="36" />
+        <state relative-caret-position="74">
+          <caret line="1058" column="42" selection-start-line="1058" selection-start-column="31" selection-end-line="1058" selection-end-column="42" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
             <element signature="e#202#238#0" />
@@ -805,9 +836,7 @@
             <element signature="e#2339#2432#0" />
             <element signature="e#2438#2543#0" />
             <element signature="e#2549#2822#0" />
-            <element signature="e#3962#4694#0" />
             <element signature="e#4664#4691#0" />
-            <element signature="e#4744#5405#0" />
             <element signature="e#5409#5543#0" />
             <element signature="e#5586#6123#0" />
             <element signature="e#5693#5771#0" />
@@ -996,34 +1025,6 @@
             <element signature="e#28644#28665#0" />
             <element signature="e#29139#29168#0" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/helpers/dbqueries.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="9" selection-start-line="2" selection-start-column="9" selection-end-line="2" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/package.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
-          <caret line="32" column="23" selection-start-line="32" selection-start-column="23" selection-end-line="32" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/Database.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" selection-start-line="3" selection-end-line="3" selection-end-column="77" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" selection-start-line="6" selection-end-line="6" />
         </state>
       </provider>
     </entry>

@@ -144,7 +144,7 @@ app.post('/broadcast', cors(), (req, res) => {
 							.then(() => findRelatedImage(pathCropped, pathOrig, null, userid))
 							.catch(err => console.log(err)))
 				} else {
-					sendBroadcast(psid,blockname);
+					sendBroadcast(psid, blockname);
 					res.sendStatus(200)
 				}
 			});
@@ -1056,7 +1056,7 @@ async function findRelatedImage(pathCropped, pathOrig, blockname, userid) {
 			}
 			return null
 		});
-		const finalArr = await Promise.all(arrayOfPromises);
+		const finalArr = await Promise.all(arrayOfPromises).catch(e => console.log(e));
 		let properIdx;
 
 		finalArr.filter((item, idx, array) => {
