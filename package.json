@@ -27,7 +27,7 @@
     "sharp": "^0.22.1"
   },
   "engines": {
-    "node": "12.x"
+    "node": "10.x"
   },
   "devDependencies": {
     "dotenv": "^6.2.0",
