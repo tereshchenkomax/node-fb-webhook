@@ -160,24 +160,28 @@ app.post('/user', cors(), async (req, res) => {
 	var userid = data.pageid;
 	console.log('userid:', userid);
 
-	if (userid) {
-		let profile_pic = `https://graph.facebook.com/${userid}/picture?height=24&width=24`;
-		let pathOrig = './userPhotos/client/';
-		let pathCropped = './userPhotos/cropped/';
-		hasPSID(userid)
-			.then(psid => {
-				if (!psid) {
-					saveImageToDisk(profile_pic, pathOrig, 'temp.jpg',
-						() => getImagesFromDB(pathCropped)
-							.then(() => findRelatedImage(pathCropped, pathOrig, null, userid))
-							.then(res.sendStatus(200))
-							.catch(err => console.log(err)))
-				} else {
-					res.sendStatus(200)
-				}
-			});
-	} else {
-		res.sendStatus(400);
+	try {
+		if (userid) {
+			let profile_pic = `https://graph.facebook.com/${userid}/picture?height=24&width=24`;
+			let pathOrig = './userPhotos/client/';
+			let pathCropped = './userPhotos/cropped/';
+			hasPSID(userid)
+				.then(psid => {
+					if (!psid) {
+						saveImageToDisk(profile_pic, pathOrig, 'temp.jpg',
+							() => getImagesFromDB(pathCropped)
+								.then(() => findRelatedImage(pathCropped, pathOrig, null, userid))
+								.then(res.sendStatus(200))
+								.catch(err => console.log(err)))
+					} else {
+						res.sendStatus(200)
+					}
+				});
+		} else {
+			res.sendStatus(400);
+		}
+	} catch (e) {
+		console.log('user endpoint error: ', e);
 	}
 
 });

@@ -6,12 +6,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="aeed00b0-0ce4-4f6d-b3f8-3e594429ca7b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/controllers/pg.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/helpers/dbqueries.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/jobs/databaseCron.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/latest.dump" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -24,11 +19,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="345">
-              <caret line="1159" selection-start-line="1159" selection-end-line="1159" />
+            <state relative-caret-position="234">
+              <caret line="293" column="36" selection-start-line="293" selection-start-column="36" selection-end-line="293" selection-end-column="36" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
                 <element signature="e#202#238#0" />
@@ -39,7 +34,7 @@
                 <element signature="e#2339#2432#0" />
                 <element signature="e#2438#2543#0" />
                 <element signature="e#2549#2822#0" />
-                <element signature="e#2864#3913#0" />
+                <element signature="e#3962#4694#0" />
                 <element signature="e#4664#4691#0" />
                 <element signature="e#4744#5405#0" />
                 <element signature="e#5409#5543#0" />
@@ -54,7 +49,6 @@
                 <element signature="e#7429#7507#0" />
                 <element signature="e#7951#8029#0" />
                 <element signature="e#8133#8798#0" />
-                <element signature="e#8831#12247#0" />
                 <element signature="e#10352#10516#0" />
                 <element signature="e#10538#10747#0" />
                 <element signature="e#10767#12143#0" />
@@ -230,18 +224,25 @@
                 <element signature="e#28154#28175#0" />
                 <element signature="e#28644#28665#0" />
                 <element signature="e#29139#29168#0" />
-                <element signature="e#27124#27139#0" />
-                <element signature="e#27281#27346#0" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/jobs/databaseCron.js">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/helpers/dbqueries.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="45">
-              <caret line="3" column="30" selection-start-line="3" selection-start-column="30" selection-end-line="3" selection-end-column="30" />
+            <state relative-caret-position="30">
+              <caret line="2" column="9" selection-start-line="2" selection-start-column="9" selection-end-line="2" selection-end-column="9" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/package.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="480">
+              <caret line="32" column="23" selection-start-line="32" selection-start-column="23" selection-end-line="32" selection-end-column="23" />
             </state>
           </provider>
         </entry>
@@ -249,8 +250,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/Database.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="97">
-              <caret line="7" column="13" lean-forward="true" selection-end-line="22" />
+            <state relative-caret-position="45">
+              <caret line="3" selection-start-line="3" selection-end-line="3" selection-end-column="77" />
             </state>
           </provider>
         </entry>
@@ -324,12 +325,12 @@
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/.eslintrc.json" />
         <option value="$APPLICATION_CONFIG_DIR$/scratches/scratch.txt" />
-        <option value="$PROJECT_DIR$/package.json" />
         <option value="$APPLICATION_CONFIG_DIR$/scratches/Database.txt" />
         <option value="$PROJECT_DIR$/app.js" />
         <option value="$PROJECT_DIR$/controllers/pg.js" />
         <option value="$PROJECT_DIR$/helpers/dbqueries.js" />
         <option value="$PROJECT_DIR$/jobs/databaseCron.js" />
+        <option value="$PROJECT_DIR$/package.json" />
       </list>
     </option>
   </component>
@@ -343,7 +344,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -358,11 +358,6 @@
             </path>
             <path>
               <item name="node" type="b2602c69:ProjectViewProjectNode" />
-              <item name="node" type="462c0819:PsiDirectoryNode" />
-              <item name="jobs" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="node" type="b2602c69:ProjectViewProjectNode" />
               <item name="Scratches and Consoles" type="1a2a3e82:ScratchProjectViewPane$MyProjectNode" />
             </path>
             <path>
@@ -374,6 +369,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -539,7 +535,13 @@
       <workItem from="1561906224966" duration="307000" />
       <workItem from="1561907337163" duration="193000" />
       <workItem from="1561919960786" duration="221000" />
-      <workItem from="1562098685294" duration="489000" />
+      <workItem from="1562098685294" duration="686000" />
+      <workItem from="1562147850782" duration="1551000" />
+      <workItem from="1562180469800" duration="2385000" />
+      <workItem from="1562229778408" duration="404000" />
+      <workItem from="1562233333363" duration="135000" />
+      <workItem from="1562434733801" duration="240000" />
+      <workItem from="1562594275912" duration="239000" />
     </task>
     <task id="LOCAL-00001" summary="Before the rebasing the project locally">
       <created>1561571456708</created>
@@ -555,11 +557,18 @@
       <option name="project" value="LOCAL" />
       <updated>1561639000005</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="speed opt is done">
+      <created>1562099231673</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1562099231674</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="218481000" />
+    <option name="totallyTimeSpent" value="223632000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -572,9 +581,8 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49910232" visible="true" weight="0.23537703" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49910232" visible="true" weight="0.23537703" />
       <window_info id="Structure" order="1" sideWeight="0.50089765" side_tool="true" weight="0.24947146" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -588,7 +596,7 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.32891566" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5017618" side_tool="true" weight="0.38072288" />
-      <window_info anchor="bottom" x="-517" y="-690" width="1899" height="300" id="Terminal" order="10" sideWeight="0.4982382" visible="true" weight="0.48795182" />
+      <window_info active="true" anchor="bottom" x="-517" y="-690" width="1899" height="300" id="Terminal" order="10" sideWeight="0.4982382" visible="true" weight="0.48795182" />
       <window_info anchor="bottom" id="Messages" order="11" weight="0.32891566" />
       <window_info anchor="bottom" id="V8 CPU Profiling" order="12" weight="0.5019802" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -642,7 +650,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Before the rebasing the project locally" />
     <MESSAGE value="rolling back" />
-    <option name="LAST_COMMIT_MESSAGE" value="rolling back" />
+    <MESSAGE value="speed opt is done" />
+    <option name="LAST_COMMIT_MESSAGE" value="speed opt is done" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/node_modules/sharp/lib/resize.js">
@@ -730,13 +739,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/package.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="22" column="16" selection-start-line="22" selection-start-column="5" selection-end-line="22" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/.env">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15">
@@ -775,20 +777,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" selection-start-line="6" selection-end-line="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/Database.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="97">
-          <caret line="7" column="13" lean-forward="true" selection-end-line="22" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/controllers/pg.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
@@ -796,17 +784,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/helpers/dbqueries.js">
+    <entry file="file://$PROJECT_DIR$/jobs/databaseCron.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="57" selection-start-line="57" selection-end-line="57" />
+        <state relative-caret-position="60">
+          <caret line="4" column="11" selection-start-line="4" selection-start-column="11" selection-end-line="4" selection-end-column="11" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="1159" selection-start-line="1159" selection-end-line="1159" />
+        <state relative-caret-position="234">
+          <caret line="293" column="36" selection-start-line="293" selection-start-column="36" selection-end-line="293" selection-end-column="36" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
             <element signature="e#202#238#0" />
@@ -817,7 +805,7 @@
             <element signature="e#2339#2432#0" />
             <element signature="e#2438#2543#0" />
             <element signature="e#2549#2822#0" />
-            <element signature="e#2864#3913#0" />
+            <element signature="e#3962#4694#0" />
             <element signature="e#4664#4691#0" />
             <element signature="e#4744#5405#0" />
             <element signature="e#5409#5543#0" />
@@ -832,7 +820,6 @@
             <element signature="e#7429#7507#0" />
             <element signature="e#7951#8029#0" />
             <element signature="e#8133#8798#0" />
-            <element signature="e#8831#12247#0" />
             <element signature="e#10352#10516#0" />
             <element signature="e#10538#10747#0" />
             <element signature="e#10767#12143#0" />
@@ -1008,16 +995,35 @@
             <element signature="e#28154#28175#0" />
             <element signature="e#28644#28665#0" />
             <element signature="e#29139#29168#0" />
-            <element signature="e#27124#27139#0" />
-            <element signature="e#27281#27346#0" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/jobs/databaseCron.js">
+    <entry file="file://$PROJECT_DIR$/helpers/dbqueries.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="9" selection-start-line="2" selection-start-column="9" selection-end-line="2" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="480">
+          <caret line="32" column="23" selection-start-line="32" selection-start-column="23" selection-end-line="32" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/Database.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="45">
-          <caret line="3" column="30" selection-start-line="3" selection-start-column="30" selection-end-line="3" selection-end-column="30" />
+          <caret line="3" selection-start-line="3" selection-end-line="3" selection-end-column="77" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" selection-start-line="6" selection-end-line="6" />
         </state>
       </provider>
     </entry>
