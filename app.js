@@ -144,7 +144,7 @@ app.post('/broadcast', cors(), (req, res) => {
 							.then(() => findRelatedImage(pathCropped, pathOrig, null, userid))
 							.catch(err => console.log(err)))
 				} else {
-					sendBroadcast(psid, blockname);
+					sendBroadcast(psid,blockname);
 					res.sendStatus(200)
 				}
 			});
@@ -160,28 +160,24 @@ app.post('/user', cors(), async (req, res) => {
 	var userid = data.pageid;
 	console.log('userid:', userid);
 
-	try {
-		if (userid) {
-			let profile_pic = `https://graph.facebook.com/${userid}/picture?height=24&width=24`;
-			let pathOrig = './userPhotos/client/';
-			let pathCropped = './userPhotos/cropped/';
-			hasPSID(userid)
-				.then(psid => {
-					if (!psid) {
-						saveImageToDisk(profile_pic, pathOrig, 'temp.jpg',
-							() => getImagesFromDB(pathCropped)
-								.then(() => findRelatedImage(pathCropped, pathOrig, null, userid))
-								.then(res.sendStatus(200))
-								.catch(err => console.log(err)))
-					} else {
-						res.sendStatus(200)
-					}
-				});
-		} else {
-			res.sendStatus(400);
-		}
-	} catch (e) {
-		console.log('user endpoint error: ', e);
+	if (userid) {
+		let profile_pic = `https://graph.facebook.com/${userid}/picture?height=24&width=24`;
+		let pathOrig = './userPhotos/client/';
+		let pathCropped = './userPhotos/cropped/';
+		hasPSID(userid)
+			.then(psid => {
+				if (!psid) {
+					saveImageToDisk(profile_pic, pathOrig, 'temp.jpg',
+						() => getImagesFromDB(pathCropped)
+							.then(() => findRelatedImage(pathCropped, pathOrig, null, userid))
+							.then(res.sendStatus(200))
+							.catch(err => console.log(err)))
+				} else {
+					res.sendStatus(200)
+				}
+			});
+	} else {
+		res.sendStatus(400);
 	}
 
 });
@@ -1043,46 +1039,48 @@ function sendBroadcast(user, blockname) {
 
 async function findRelatedImage(pathCropped, pathOrig, blockname, userid) {
 	console.time("findRelatedImage");
-	let files = fs.readdirSync(pathCropped);
+	const files = fs.readdirSync(pathCropped);
+	const origimg = pathOrig + 'temp.jpg'
 	const arrayOfPromises = [];
-	try {
-		let properfiles = files.filter((file) => {
-			if (/^[0-9]+\.jpg$/.test(file)) {
-				arrayOfPromises.push(imgDiff({
-					actualFilename: pathCropped + file,
-					expectedFilename: pathOrig + 'temp.jpg'
-				}));
-				return file
-			}
-			return null
-		});
-		const finalArr = await Promise.all(arrayOfPromises).catch(e => console.log(e));
-		let properIdx;
+	if(fs.existsSync(origimg)){
+		try {
+			let properfiles = files.filter((file) => {
+				if (/^[0-9]+\.jpg$/.test(file)) {
+					arrayOfPromises.push(imgDiff({
+						actualFilename: pathCropped + file,
+						expectedFilename: origimg
+					}));
+					return file
+				}
+				return null
+			});
+			const finalArr = await Promise.all(arrayOfPromises);
+			let properIdx;
 
-		finalArr.filter((item, idx, array) => {
-			if ((!idx && item.diffCount < 60) || (item.diffCount < 60 && array[idx - 1].diffCount > item.diffCount)) {
-				properIdx = idx;
-				return item
-			}
-			return null
-		});
+			finalArr.filter((item, idx, array) => {
+				if ((!idx && item.diffCount < 60) || (item.diffCount < 60 && array[idx - 1].diffCount > item.diffCount)) {
+					properIdx = idx;
+					return item
+				}
+				return null
+			});
 
-		console.log('properIdx: ', properIdx);
-		console.log('properfiles[properIdx]: ', properfiles[properIdx]);
-		if (properIdx || properIdx === 0) {
-			const psid = properfiles[properIdx].split('.').shift();
-			console.log('psid: ', psid);
-			await insertUserIDtoDB(userid, psid);
-			await removeImageFromDB(psid);
-			if (blockname) {
-				sendBroadcast(psid, blockname);//TODO uncomment
+			console.log('properIdx: ', properIdx);
+			console.log('properfiles[properIdx]: ', properfiles[properIdx]);
+			if (properIdx || properIdx === 0) {
+				const psid = properfiles[properIdx].split('.').shift();
+				console.log('psid: ', psid);
+				await insertUserIDtoDB(userid, psid);
+				await removeImageFromDB(psid);
+				if (blockname) {
+					sendBroadcast(psid, blockname);//TODO uncomment
+				}
 			}
+			console.timeEnd("findRelatedImage");
+		} catch (e) {
+			console.log(e);
 		}
-		console.timeEnd("findRelatedImage");
-	} catch (e) {
-		console.log(e);
 	}
-
 }
 
 function ifNotExistCreatePath(path) {
