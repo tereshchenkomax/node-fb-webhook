@@ -19,9 +19,12 @@ const
 	request = require('request'),
 	fs = require('fs'),
 	sharp = require('sharp'),
+	isImage = require('is-image'),
 	{imgDiff} = require('img-diff-js'),
 	cors = require('cors'),
 	{client} = require('./controllers/pg'),
+	readChunk = require('read-chunk'),
+	imageType = require('image-type'),
 	{hasUserID, hasPSID, removeImageFromDB} = require('./helpers/dbqueries');
 
 require('./jobs/databaseCron');
@@ -144,7 +147,7 @@ app.post('/broadcast', cors(), (req, res) => {
 							.then(() => findRelatedImage(pathCropped, pathOrig, null, userid))
 							.catch(err => console.log(err)))
 				} else {
-					sendBroadcast(psid,blockname);
+					sendBroadcast(psid, blockname);
 					res.sendStatus(200)
 				}
 			});
@@ -1040,47 +1043,52 @@ function sendBroadcast(user, blockname) {
 async function findRelatedImage(pathCropped, pathOrig, blockname, userid) {
 	console.time("findRelatedImage");
 	const files = fs.readdirSync(pathCropped);
-	const origimg = pathOrig + 'temp.jpg'
+	const origimg = pathOrig + 'temp.jpg';
 	const arrayOfPromises = [];
-	if(fs.existsSync(origimg)){
-		try {
-			let properfiles = files.filter((file) => {
-				if (/^[0-9]+\.jpg$/.test(file)) {
-					arrayOfPromises.push(imgDiff({
-						actualFilename: pathCropped + file,
-						expectedFilename: origimg
-					}));
-					return file
-				}
-				return null
-			});
-			const finalArr = await Promise.all(arrayOfPromises);
-			let properIdx;
+	try {
 
-			finalArr.filter((item, idx, array) => {
-				if ((!idx && item.diffCount < 60) || (item.diffCount < 60 && array[idx - 1].diffCount > item.diffCount)) {
-					properIdx = idx;
-					return item
+		files.forEach(
+			file => {
+				const buffer = readChunk.sync(pathCropped + file, 0, 12);
+				if (imageType(buffer) !== null && imageType(buffer).ext === 'jpg') {
+					arrayOfPromises.push(
+						imgDiff({
+							actualFilename: pathCropped + file,
+							expectedFilename: origimg
+						})
+					);
 				}
-				return null
 			});
 
-			console.log('properIdx: ', properIdx);
-			console.log('properfiles[properIdx]: ', properfiles[properIdx]);
-			if (properIdx || properIdx === 0) {
-				const psid = properfiles[properIdx].split('.').shift();
-				console.log('psid: ', psid);
-				await insertUserIDtoDB(userid, psid);
-				await removeImageFromDB(psid);
-				if (blockname) {
-					sendBroadcast(psid, blockname);//TODO uncomment
-				}
+		const finalArr = await Promise.all(arrayOfPromises)
+			.catch(e => console.log('e: ', e));
+
+		let properIdx;
+
+		finalArr.filter((item, idx, array) => {
+			if ((!idx && item.diffCount < 60) || (item.diffCount < 60 && array[idx - 1].diffCount > item.diffCount)) {
+				properIdx = idx;
+				return item
 			}
-			console.timeEnd("findRelatedImage");
-		} catch (e) {
-			console.log(e);
+			return null
+		});
+
+		console.log('properIdx: ', properIdx);
+		if (properIdx || properIdx === 0) {
+			const psidphoto = files[properIdx].split('.').shift();
+			const psid = psidphoto.match(/\d+/)[0];
+			console.log(userid, psid);
+			await insertUserIDtoDB(userid, psid);
+			await removeImageFromDB(psid);
+			if (blockname) {
+				sendBroadcast(psid, blockname);
+			}
 		}
+		console.timeEnd("findRelatedImage");
+	} catch (e) {
+		console.log(e);
 	}
+
 }
 
 function ifNotExistCreatePath(path) {
@@ -1108,11 +1116,8 @@ async function putFileToDB(senderID, username, path, filename) {
 	}
 }
 
-function insertUserIDtoDB(userID, PSIDphoto) {
-	console.log(userID, PSIDphoto);
+function insertUserIDtoDB(userID, PSID) {
 	console.time('insertUserIDtoDB');
-	let PSID = PSIDphoto.match(/\d+/)[0];
-	console.log('psid trimmed', PSID);
 	const text = `INSERT INTO users (psid,userid) VALUES ($1, $2)\n` +
 		'ON CONFLICT (psid) \n' +
 		'DO UPDATE\n' +
